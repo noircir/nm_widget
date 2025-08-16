@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Research Tool - Professional Domain Availability Checker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .search-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: border-color 0.3s;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .tld-selection {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tld-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tld-checkbox:hover {
+            background: #e3f2fd;
+        }
+
+        .tld-checkbox.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+            height: fit-content;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .check-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .quick-names {
+            margin-bottom: 20px;
+        }
+
+        .quick-names h4 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .name-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .name-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .name-tag:hover {
+            background: #1976d2;
+            color: white;
+        }
+
+        .results-section {
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #6c757d;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .domain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .domain-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .domain-card.available {
+            border-color: #28a745;
+            background: #f8fff9;
+        }
+
+        .domain-card.taken {
+            border-color: #dc3545;
+            background: #fff8f8;
+        }
+
+        .domain-card.premium {
+            border-color: #ffc107;
+            background: #fffdf0;
+        }
+
+        .domain-card.checking {
+            border-color: #6c757d;
+            background: #f8f9fa;
+        }
+
+        .domain-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .domain-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-taken {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-premium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-checking {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .domain-info {
+            font-size: 0.9em;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+
+        .price-info {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 8px;
+        }
+
+        .registrar-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+
+        .registrar-link:hover {
+            background: #5a67d8;
+        }
+
+        .summary-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .summary-stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 600;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .recommendations {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #28a745;
+        }
+
+        .recommendations h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .recommendation-item {
+            margin-bottom: 8px;
+            color: #155724;
+        }
+
+        .whois-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: #6c757d;
+        }
+
+        .alternatives-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .alternatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .alternative-domain {
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9em;
+            border: 1px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .domain-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Domain Research Tool</h1>
+            <p>Professional domain availability checker with comprehensive analysis</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="search-section">
+                <div class="search-form">
+                    <div>
+                        <div class="form-group">
+                            <label for="domainName">Business Name to Research</label>
+                            <input type="text" id="domainName" class="name-input" placeholder="Enter your business name (e.g., Nextura)" autocomplete="off">
+                        </div>
+                        
+                        <div class="quick-names">
+                            <h4>🚀 Quick Fill (from Name Generator):</h4>
+                            <div class="name-tags">
+                                <span class="name-tag" onclick="fillName('Nextura')">Nextura</span>
+                                <span class="name-tag" onclick="fillName('Atlas')">Atlas</span>
+                                <span class="name-tag" onclick="fillName('SteelCanvas')">SteelCanvas</span>
+                                <span class="name-tag" onclick="fillName('Voxel')">Voxel</span>
+                                <span class="name-tag" onclick="fillName('Compass')">Compass</span>
+                                <span class="name-tag" onclick="fillName('DigitalGrain')">DigitalGrain</span>
+                                <span class="name-tag" onclick="fillName('Catalyst')">Catalyst</span>
+                                <span class="name-tag" onclick="fillName('Foundry')">Foundry</span>
+                                <span class="name-tag" onclick="fillName('Vertex')">Vertex</span>
+                                <span class="name-tag" onclick="fillName('Buildtech')">Buildtech</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Domain Extensions to Check</label>
+                            <div class="tld-selection">
+                                <div class="tld-checkbox selected" data-tld=".com">
+                                    <input type="checkbox" checked> .com
+                                </div>
+                                <div class="tld-checkbox selected" data-tld=".ai">
+                                    <input type="checkbox" checked> .ai
+                                </div>
+                                <div class="tld-checkbox" data-tld=".io">
+                                    <input type="checkbox"> .io
+                                </div>
+                                <div class="tld-checkbox" data-tld=".co">
+                                    <input type="checkbox"> .co
+                                </div>
+                                <div class="tld-checkbox" data-tld=".app">
+                                    <input type="checkbox"> .app
+                                </div>
+                                <div class="tld-checkbox" data-tld=".tech">
+                                    <input type="checkbox"> .tech
+                                </div>
+                                <div class="tld-checkbox" data-tld=".dev">
+                                    <input type="checkbox"> .dev
+                                </div>
+                                <div class="tld-checkbox" data-tld=".org">
+                                    <input type="checkbox"> .org
+                                </div>
+                                <div class="tld-checkbox" data-tld=".net">
+                                    <input type="checkbox"> .net
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="check-btn" onclick="checkDomains()">
+                        🔍 Check Domains
+                    </button>
+                </div>
+            </div>
+            
+            <div class="results-section" id="resultsSection">
+                <!-- Results will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // TLD checkbox handling
+        document.querySelectorAll('.tld-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                const input = this.querySelector('input');
+                input.checked = !input.checked;
+                this.classList.toggle('selected', input.checked);
+            });
+        });
+
+        // Quick name filling
+        function fillName(name) {
+            document.getElementById('domainName').value = name;
+        }
+
+        // Enter key support
+        document.getElementById('domainName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkDomains();
+            }
+        });
+
+        // Main domain checking function
+        async function checkDomains() {
+            const nameInput = document.getElementById('domainName');
+            const name = nameInput.value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+            
+            if (!name) {
+                alert('Please enter a business name to check');
+                return;
+            }
+
+            // Get selected TLDs
+            const selectedTLDs = Array.from(document.querySelectorAll('.tld-checkbox.selected'))
+                .map(el => el.dataset.tld);
+
+            if (selectedTLDs.length === 0) {
+                alert('Please select at least one domain extension to check');
+                return;
+            }
+
+            // Show loading
+            const resultsSection = document.getElementById('resultsSection');
+            resultsSection.className = 'results-section show';
+            resultsSection.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <h3>Checking Domain Availability</h3>
+                    <p>Researching ${selectedTLDs.length} domain extensions for "${name}"...</p>
+                </div>
+            `;
+
+            try {
+                // Check each domain
+                const results = [];
+                for (const tld of selectedTLDs) {
+                    const domain = name + tld;
+                    const result = await checkSingleDomain(domain, tld);
+                    results.push(result);
+                    
+                    // Update results progressively
+                    displayResults(name, results, selectedTLDs.length);
+                    
+                    // Add delay to avoid rate limiting
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+
+                // Final results with analysis
+                displayFinalResults(name, results);
+
+            } catch (error) {
+                resultsSection.innerHTML = `
+                    <div style="text-align: center; padding: 50px; color: #dc3545;">
+                        <h3>❌ Research Error</h3>
+                        <p>${error.message}</p>
+                        <p style="margin-top: 15px; font-size: 0.9em; color: #6c757d;">
+                            Note: This demo uses simulated data. In production, this would use real domain APIs.
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+        async function checkSingleDomain(domain, tld) {
+            // Simulate API call with realistic data
+            const isAvailable = Math.random() > 0.7; // 30% availability rate (realistic)
+            const isPremium = !isAvailable && Math.random() > 0.8;
+            
+            // Simulate realistic pricing
+            const pricing = {
+                '.com': { standard: 12, premium: 2500 },
+                '.ai': { standard: 75, premium: 15000 },
+                '.io': { standard: 45, premium: 5000 },
+                '.co': { standard: 25, premium: 1500 },
+                '.app': { standard: 20, premium: 800 },
+                '.tech': { standard: 35, premium: 1200 },
+                '.dev': { standard: 15, premium: 600 },
+                '.org': { standard: 14, premium: 800 },
+                '.net': { standard: 13, premium: 1000 }
+            };
+
+            const price = pricing[tld] || { standard: 20, premium: 1000 };
+            
+            return {
+                domain,
+                tld,
+                available: isAvailable,
+                premium: isPremium,
+                price: isAvailable ? price.standard : (isPremium ? price.premium : null),
+                registrar: isAvailable ? getRandomRegistrar() : null,
+                whois: !isAvailable ? generateWhoisData(domain) : null,
+                alternatives: !isAvailable ? generateAlternatives(domain.replace(tld, ''), tld) : []
+            };
+        }
+
+        function getRandomRegistrar() {
+            const registrars = ['Namecheap', 'GoDaddy', 'Name.com', 'Google Domains', 'Cloudflare'];
+            return registrars[Math.floor(Math.random() * registrars.length)];
+        }
+
+        function generateWhoisData(domain) {
+            const registrars = ['GoDaddy', 'Namecheap', 'Name.com', 'Network Solutions'];
+            const countries = ['US', 'CA', 'UK', 'DE', 'AU'];
+            
+            return {
+                registrar: registrars[Math.floor(Math.random() * registrars.length)],
+                registrationDate: '2018-03-15',
+                expiryDate: '2025-03-15',
+                registrantCountry: countries[Math.floor(Math.random() * countries.length)],
+                isPrivate: Math.random() > 0.3
+            };
+        }
+
+        function generateAlternatives(name, tld) {
+            const prefixes = ['get', 'my', 'the', 'go', 'try'];
+            const suffixes = ['app', 'pro', 'hub', 'labs', 'co'];
+            
+            const alternatives = [];
+            
+            // Add prefix variations
+            for (let i = 0; i < 2; i++) {
+                const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                alternatives.push(prefix + name + tld);
+            }
+            
+            // Add suffix variations
+            for (let i = 0; i < 2; i++) {
+                const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+                alternatives.push(name + suffix + tld);
+            }
+            
+            return alternatives.slice(0, 3);
+        }
+
+        function displayResults(name, results, totalCount) {
+            const completed = results.length;
+            const available = results.filter(r => r.available).length;
+            const premium = results.filter(r => r.premium).length;
+            
+            let html = `
+                <div class="summary-section">
+                    <h3>🔍 Domain Research for "${name.toUpperCase()}"</h3>
+                    <div class="summary-grid">
+                        <div class="summary-stat">
+                            <span class="stat-number">${completed}/${totalCount}</span>
+                            <span class="stat-label">Checked</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-number">${available}</span>
+                            <span class="stat-label">Available</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-number">${premium}</span>
+                            <span class="stat-label">Premium</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-number">${completed - available}</span>
+                            <span class="stat-label">Taken</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="domain-grid">
+            `;
+
+            results.forEach(result => {
+                const statusClass = result.available ? 'available' : (result.premium ? 'premium' : 'taken');
+                const statusText = result.available ? 'Available' : (result.premium ? 'Premium' : 'Taken');
+                const statusBadgeClass = result.available ? 'status-available' : (result.premium ? 'status-premium' : 'status-taken');
+
+                html += `
+                    <div class="domain-card ${statusClass}">
+                        <div class="domain-name">${result.domain}</div>
+                        <div class="domain-status ${statusBadgeClass}">${statusText}</div>
+                        <div class="domain-info">
+                `;
+
+                if (result.available) {
+                    html += `
+                        <div class="price-info">$${result.price}/year</div>
+                        <div>via ${result.registrar}</div>
+                        <a href="#" class="registrar-link" onclick="openRegistrar('${result.domain}', '${result.registrar}')">Register Now</a>
+                    `;
+                } else if (result.premium) {
+                    html += `
+                        <div class="price-info">$${result.price.toLocaleString()}</div>
+                        <div>Premium domain</div>
+                        <a href="#" class="registrar-link">View Details</a>
+                    `;
+                } else {
+                    html += `
+                        <div>Registered ${result.whois.registrationDate}</div>
+                        <div>Expires ${result.whois.expiryDate}</div>
+                        <div>via ${result.whois.registrar}</div>
+                    `;
+
+                    if (result.alternatives.length > 0) {
+                        html += `<div style="margin-top: 10px; font-size: 0.8em;">Alternatives: ${result.alternatives.slice(0, 2).join(', ')}</div>`;
+                    }
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+
+            document.getElementById('resultsSection').innerHTML = html;
+        }
+
+        function displayFinalResults(name, results) {
+            const available = results.filter(r => r.available);
+            const premium = results.filter(r => r.premium);
+            const taken = results.filter(r => !r.available && !r.premium);
+
+            // Generate recommendations
+            let recommendations = [];
+            
+            if (available.length > 0) {
+                const comAvailable = available.find(r => r.tld === '.com');
+                const aiAvailable = available.find(r => r.tld === '.ai');
+                
+                if (comAvailable) {
+                    recommendations.push(`🎯 Secure ${comAvailable.domain} immediately - .com domains are gold standard`);
+                }
+                
+                if (aiAvailable) {
+                    recommendations.push(`🤖 ${aiAvailable.domain} perfect for AI-focused branding`);
+                }
+                
+                if (available.length >= 3) {
+                    recommendations.push(`✅ Great availability! Consider registering multiple TLDs for brand protection`);
+                }
+            } else {
+                recommendations.push(`❌ Primary domains unavailable - consider name variations or premium options`);
+            }
+
+            if (premium.length > 0) {
+                const affordablePremium = premium.filter(r => r.price < 5000);
+                if (affordablePremium.length > 0) {
+                    recommendations.push(`💎 Consider premium domains under $5,000 for strong brand presence`);
+                }
+            }
+
+            // Collect all alternatives
+            const allAlternatives = taken.flatMap(r => r.alternatives).slice(0, 10);
+
+            // Update display with final results and recommendations
+            displayResults(name, results, results.length);
+            
+            const currentHTML = document.getElementById('resultsSection').innerHTML;
+            
+            let additionalHTML = '';
+            
+            if (recommendations.length > 0) {
+                additionalHTML += `
+                    <div class="recommendations">
+                        <h4>💡 Recommendations</h4>
+                        ${recommendations.map(rec => `<div class="recommendation-item">• ${rec}</div>`).join('')}
+                    </div>
+                `;
+            }
+
+            if (allAlternatives.length > 0) {
+                additionalHTML += `
+                    <div class="alternatives-section">
+                        <h4>🔄 Alternative Domains</h4>
+                        <div class="alternatives-grid">
+                            ${allAlternatives.map(alt => `<div class="alternative-domain">${alt}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            additionalHTML += `
+                <div style="margin-top: 30px; padding: 20px; background: #e9ecef; border-radius: 10px; text-align: center; color: #6c757d;">
+                    <h4>📋 Research Complete</h4>
+                    <p>This demo uses simulated data for demonstration. In production, this would integrate with:</p>
+                    <p style="margin-top: 8px; font-size: 0.9em;">
+                        • Domain registrar APIs (GoDaddy, Namecheap, Name.com)<br>
+                        • WHOIS databases for ownership data<br>
+                        • Premium domain marketplaces<br>
+                        • Real-time pricing and availability
+                    </p>
+                </div>
+            `;
+
+            document.getElementById('resultsSection').innerHTML = currentHTML + additionalHTML;
+        }
+
+        function openRegistrar(domain, registrar) {
+            // In production, this would open the actual registrar with the domain pre-filled
+            alert(`Opening ${registrar} to register ${domain}\n\n(This is a demo - would open real registrar in production)`);
+        }
+    </script>
+</body>
+</html>
