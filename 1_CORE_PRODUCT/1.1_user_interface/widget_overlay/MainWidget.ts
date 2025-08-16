@@ -8,7 +8,9 @@
 
 import { VoiceSelector, Voice } from '../voice_selection/VoiceSelector';
 import { RecordingButton, RecordingState } from '../recording_controls/RecordingButton';
-import { DesignTokens, ComponentStyles } from '../styles/design-system';
+import { ComponentStyles } from '../styles/design-system';
+import { AudioManager } from '../../1.2_voice_engine/audio_processing/AudioManager';
+import { GoogleTTSClient, TTSRequest } from '../../1.2_voice_engine/tts_integration/GoogleTTSClient';
 
 export interface WidgetState {
   isVisible: boolean;
@@ -32,12 +34,19 @@ export class MainWidget {
   private state: WidgetState;
   private config: WidgetConfig;
   private container: HTMLElement | null = null;
-  private voiceSelector: VoiceSelector;
-  private recordingButton: RecordingButton;
-  private currentAudio: HTMLAudioElement | null = null;
+  private voiceSelector!: VoiceSelector;
+  private recordingButton!: RecordingButton;
+  private audioManager: AudioManager;
+  private ttsClient: GoogleTTSClient;
 
-  constructor(config: WidgetConfig) {
+  constructor(
+    config: WidgetConfig, 
+    audioManager: AudioManager, 
+    ttsClient: GoogleTTSClient
+  ) {
     this.config = config;
+    this.audioManager = audioManager;
+    this.ttsClient = ttsClient;
     this.state = {
       isVisible: false,
       selectedText: '',
@@ -85,7 +94,7 @@ export class MainWidget {
   }
 
   /**
-   * Play selected text with current voice
+   * Play selected text with current voice using AudioManager and GoogleTTSClient
    */
   async playText(): Promise<void> {
     if (!this.state.selectedText || this.state.isPlaying) return;
@@ -99,17 +108,22 @@ export class MainWidget {
         throw new Error('No voice selected');
       }
 
-      // Get audio from TTS API via Supabase Edge Function
-      const audioBlob = await this.requestTTSAudio(this.state.selectedText, selectedVoice);
-      
-      // Play audio
-      this.currentAudio = new Audio(URL.createObjectURL(audioBlob));
-      this.currentAudio.onended = () => {
+      // Create TTS request
+      const ttsRequest: TTSRequest = {
+        text: this.state.selectedText,
+        languageCode: this.state.currentLanguage,
+        voiceId: selectedVoice.id,
+        audioFormat: 'mp3',
+        speakingRate: 1.0,
+        pitch: 0.0,
+        volumeGainDb: 0.0
+      };
+
+      // Use TTS client with AudioManager for consistent audio handling
+      await this.ttsClient.synthesizeAndPlay(ttsRequest, () => {
         this.state.isPlaying = false;
         this.updateUI();
-      };
-      
-      await this.currentAudio.play();
+      });
       
       this.trackAnalytics('text_played', {
         textLength: this.state.selectedText.length,
@@ -125,14 +139,10 @@ export class MainWidget {
   }
 
   /**
-   * Stop current audio playback
+   * Stop current audio playback using AudioManager
    */
-  stopAudio(): void {
-    if (this.currentAudio) {
-      this.currentAudio.pause();
-      this.currentAudio.currentTime = 0;
-      this.currentAudio = null;
-    }
+  async stopAudio(): Promise<void> {
+    await this.audioManager.stopAudio();
     this.state.isPlaying = false;
     this.updateUI();
   }
@@ -188,25 +198,24 @@ export class MainWidget {
   }
 
   /**
-   * Request TTS audio from backend
+   * Get cache statistics for monitoring
    */
-  private async requestTTSAudio(text: string, voice: Voice): Promise<Blob> {
-    const response = await fetch('/api/tts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        text,
-        voiceId: voice.id,
-        language: this.state.currentLanguage,
-        format: 'mp3'
-      })
-    });
+  getCacheStats() {
+    return this.ttsClient.getCacheStats();
+  }
 
-    if (!response.ok) {
-      throw new Error(`TTS request failed: ${response.status}`);
-    }
+  /**
+   * Clear audio cache
+   */
+  clearCache(): void {
+    this.ttsClient.clearCache();
+  }
 
-    return await response.blob();
+  /**
+   * Get current audio playback state
+   */
+  getAudioState() {
+    return this.audioManager.getPlaybackState();
   }
 
   /**

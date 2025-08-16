@@ -44,7 +44,7 @@ export class RecordingButton {
       }
 
       // Request microphone access
-      const stream = await navigator.mediaRecorder.getUserMedia({ 
+      const stream = await navigator.mediaDevices.getUserMedia({ 
         audio: {
           sampleRate: this.config.sampleRate,
           channelCount: 1,
@@ -122,7 +122,7 @@ export class RecordingButton {
       });
     };
 
-    this.mediaRecorder.onerror = (event) => {
+    this.mediaRecorder.onerror = (_event) => {
       this.updateState({
         status: 'error',
         duration: this.state.duration,

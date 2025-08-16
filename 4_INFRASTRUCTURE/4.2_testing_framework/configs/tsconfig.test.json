@@ -1,0 +1,75 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    
+    /* Strict Type Checking - Enhanced for testing */
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "useUnknownInCatchVariables": true,
+    
+    /* Interop Constraints */
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    
+    /* Type Checking */
+    "skipLibCheck": true,
+    
+    /* Path Mapping for Clean Imports - Relative to configs directory */
+    "baseUrl": "../../../..",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@core/*": ["./1_CORE_PRODUCT/*"],
+      "@platform/*": ["./2_PLATFORM_INTEGRATION/*"],
+      "@data/*": ["./3_DATA_INTELLIGENCE/*"],
+      "@infra/*": ["./4_INFRASTRUCTURE/*"],
+      "@future/*": ["./5_FUTURE_EXTENSIBILITY/*"],
+      "@tests/*": ["./4_INFRASTRUCTURE/4.2_testing_framework/*"],
+      "@mocks/*": ["./4_INFRASTRUCTURE/4.2_testing_framework/mocks/*"],
+      "@utils/*": ["./4_INFRASTRUCTURE/4.2_testing_framework/utils/*"],
+      "@configs/*": ["./4_INFRASTRUCTURE/4.2_testing_framework/configs/*"]
+    },
+    
+    /* Testing-specific types */
+    "types": ["vitest/globals", "chrome", "node", "jest", "@types/chrome", "@playwright/test"]
+  },
+  "include": [
+    "../**/*",
+    "../../../../1_CORE_PRODUCT/**/*",
+    "../../../../2_PLATFORM_INTEGRATION/**/*",
+    "../../../../3_DATA_INTELLIGENCE/**/*",
+    "../../../../4_INFRASTRUCTURE/**/*",
+    "../../../../5_FUTURE_EXTENSIBILITY/**/*",
+    "../../../../src/**/*",
+    "../../../../scripts/**/*"
+  ],
+  "exclude": [
+    "../../../../node_modules",
+    "../../../../dist",
+    "../../../../artifacts",
+    "../../../../coverage",
+    "../../../../playwright-report",
+    "../../../../test-results",
+    "../../../../v3_31_backup/**/*",
+    "**/supabase/functions/**/*",
+    "**/supabase_functions/**/*",
+    "../../../../4_INFRASTRUCTURE/4.1_backend_services/supabase/functions/**/*",
+    "../../../../4_INFRASTRUCTURE/4.1_backend_services/supabase_functions/**/*",
+    "../../../../4_INFRASTRUCTURE/supabase/functions/**/*"
+  ]
+}

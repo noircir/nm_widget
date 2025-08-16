@@ -4,7 +4,10 @@
  * 
  * Secure TTS client that communicates via Supabase Edge Functions
  * Hides API keys and implements cost monitoring
+ * Uses AudioManager for consistent audio handling
  */
+
+import { AudioManager } from '../audio_processing/AudioManager';
 
 export interface TTSRequest {
   text: string;
@@ -37,6 +40,7 @@ export interface CostTracking {
 
 export class GoogleTTSClient {
   private edgeFunctionUrl: string;
+  private audioManager: AudioManager;
   private costTracker: CostTracking = {
     session: 0,
     daily: 0,
@@ -44,8 +48,9 @@ export class GoogleTTSClient {
     totalCharacters: 0
   };
 
-  constructor(edgeFunctionUrl: string) {
+  constructor(edgeFunctionUrl: string, audioManager: AudioManager) {
     this.edgeFunctionUrl = edgeFunctionUrl;
+    this.audioManager = audioManager;
     this.loadCostHistory();
   }
 
@@ -57,17 +62,22 @@ export class GoogleTTSClient {
       // Validate request
       this.validateRequest(request);
 
-      // Check cache first
+      // Check AudioManager cache first
       const cacheKey = this.generateCacheKey(request);
-      const cachedAudio = this.getCachedAudio(cacheKey);
+      const cachedBlob = this.audioManager.getCachedAudio(cacheKey);
       
-      if (cachedAudio) {
+      if (cachedBlob) {
+        const metadata = await this.audioManager.getAudioMetadata(cachedBlob);
         return {
-          audioBlob: cachedAudio.blob,
+          audioBlob: cachedBlob,
           cost: 0, // Cached responses are free
           cached: true,
-          voiceName: cachedAudio.voiceName,
-          metadata: cachedAudio.metadata
+          voiceName: 'cached',
+          metadata: {
+            duration: metadata.duration,
+            format: metadata.format,
+            size: metadata.size
+          }
         };
       }
 
@@ -117,11 +127,8 @@ export class GoogleTTSClient {
         }
       };
 
-      this.cacheAudio(cacheKey, {
-        blob: audioBlob,
-        voiceName: result.voice_name,
-        metadata: ttsResponse.metadata
-      });
+      // Cache using AudioManager for consistent memory management
+      await this.audioManager.cacheAudio(cacheKey, audioBlob);
 
       return ttsResponse;
 
@@ -265,44 +272,25 @@ export class GoogleTTSClient {
   }
 
   /**
-   * Cache audio with metadata
+   * Play synthesized audio immediately
    */
-  private cacheAudio(key: string, data: any): void {
-    try {
-      // Store in localStorage with expiration
-      const cacheEntry = {
-        data,
-        timestamp: Date.now(),
-        expires: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
-      };
-      
-      localStorage.setItem(`tts_cache_${key}`, JSON.stringify(cacheEntry));
-    } catch (error) {
-      console.warn('Failed to cache audio:', error);
-    }
+  async synthesizeAndPlay(request: TTSRequest, onEnded?: () => void): Promise<void> {
+    const response = await this.synthesize(request);
+    await this.audioManager.playAudio(response.audioBlob, onEnded);
   }
 
   /**
-   * Retrieve cached audio
+   * Get current cache statistics from AudioManager
    */
-  private getCachedAudio(key: string): any | null {
-    try {
-      const cached = localStorage.getItem(`tts_cache_${key}`);
-      if (!cached) return null;
+  getCacheStats() {
+    return this.audioManager.getCacheStats();
+  }
 
-      const cacheEntry = JSON.parse(cached);
-      
-      // Check if expired
-      if (Date.now() > cacheEntry.expires) {
-        localStorage.removeItem(`tts_cache_${key}`);
-        return null;
-      }
-
-      return cacheEntry.data;
-    } catch (error) {
-      console.warn('Failed to retrieve cached audio:', error);
-      return null;
-    }
+  /**
+   * Clear TTS audio cache
+   */
+  clearCache(): void {
+    this.audioManager.clearCache();
   }
 
   /**

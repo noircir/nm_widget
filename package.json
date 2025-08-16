@@ -1,0 +1,90 @@
+{
+  "name": "nativemimic-browser-extension",
+  "version": "4.0.0",
+  "description": "NativeMimic v4.0 - TypeScript-first browser extension with comprehensive testing",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/vitest.config.ts",
+    "test:watch": "vitest --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/vitest.config.ts",
+    "test:coverage": "vitest run --coverage --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/vitest.config.ts",
+    "test:unit": "vitest run --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/vitest.unit.config.ts",
+    "test:integration": "vitest run --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/vitest.integration.config.ts",
+    "test:e2e": "playwright test --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/playwright.config.ts",
+    "test:e2e:headed": "playwright test --headed --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/playwright.config.ts",
+    "test:e2e:debug": "playwright test --debug --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/playwright.config.ts",
+    "test:smoke": "vitest run --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/vitest.smoke.config.ts",
+    "test:regression": "playwright test --grep '@regression' --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/playwright.config.ts",
+    "test:performance": "vitest run --config 4_INFRASTRUCTURE/4.2_testing_framework/configs/vitest.performance.config.ts",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:e2e",
+    "test:ci": "npm run test:coverage && npm run test:e2e",
+    "build": "tsc && vite build",
+    "build:dev": "tsc && vite build --mode development",
+    "build:test": "tsc && vite build --mode test",
+    "dev": "vite build --watch",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "extension:pack": "web-ext build --source-dir=dist --artifacts-dir=artifacts",
+    "extension:test": "web-ext run --source-dir=dist",
+    "chrome:test": "web-ext run --source-dir=dist --target=chromium",
+    "firefox:test": "web-ext run --source-dir=dist --target=firefox-desktop",
+    "setup:test-env": "node scripts/setup-test-environment.js"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "@types/jest": "^29.5.12",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^20.14.9",
+    "@types/web": "^0.0.154",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
+    "@playwright/test": "^1.45.1",
+    "eslint": "^8.57.0",
+    "happy-dom": "^14.12.0",
+    "jsdom": "^24.1.0",
+    "playwright": "^1.45.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3",
+    "vitest": "^1.6.0",
+    "web-ext": "^8.2.0",
+    "webextension-polyfill": "^0.11.0",
+    "fake-indexeddb": "^6.0.0",
+    "sinon": "^18.0.0",
+    "@sinonjs/fake-timers": "^11.2.2",
+    "whatwg-fetch": "^3.6.20",
+    "canvas": "^2.11.2",
+    "buffer": "^6.0.3"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.44.2",
+    "date-fns": "^3.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nativemimic/browser-extension.git"
+  },
+  "keywords": [
+    "browser-extension",
+    "tts",
+    "text-to-speech",
+    "accessibility",
+    "language-learning",
+    "typescript",
+    "chrome-extension",
+    "firefox-addon"
+  ],
+  "author": "NativeMimic Team",
+  "license": "MIT",
+  "browserslist": [
+    "chrome >= 88",
+    "firefox >= 89",
+    "safari >= 14",
+    "edge >= 88"
+  ]
+}

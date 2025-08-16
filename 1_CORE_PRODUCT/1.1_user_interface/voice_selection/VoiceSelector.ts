@@ -56,7 +56,10 @@ export class VoiceSelector {
       
       // Auto-select best voice if enabled
       if (this.config.autoSelectBest && this.availableVoices.length > 0) {
-        this.selectVoice(this.availableVoices[0]);
+        const bestVoice = this.availableVoices[0];
+        if (bestVoice) {
+          this.selectVoice(bestVoice);
+        }
       }
 
       return this.availableVoices;
