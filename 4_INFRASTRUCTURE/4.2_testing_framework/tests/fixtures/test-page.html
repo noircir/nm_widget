@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickSpeak Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .selectable {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: text;
+        }
+    </style>
+</head>
+<body>
+    <h1>QuickSpeak Test Page</h1>
+    
+    <div class="test-section">
+        <h2>English Text Testing</h2>
+        <p class="selectable" id="english-short">
+            The central hub for editors, writers and language learners.
+        </p>
+        <p class="selectable" id="english-long">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+    </div>
+
+    <div class="test-section">
+        <h2>Multi-Language Testing</h2>
+        <p class="selectable" id="french-text">
+            Bonjour le monde! Comment allez-vous aujourd'hui?
+        </p>
+        <p class="selectable" id="spanish-text">
+            Hola mundo! ¿Cómo estás hoy?
+        </p>
+        <p class="selectable" id="german-text">
+            Hallo Welt! Wie geht es dir heute?
+        </p>
+    </div>
+
+    <div class="test-section">
+        <h2>Special Characters Testing</h2>
+        <p class="selectable" id="special-chars">
+            Test with numbers 123, symbols @#$%, and émojis 🎉🚀💻
+        </p>
+        <p class="selectable" id="punctuation">
+            Testing punctuation: "Hello world!" - she said. (What a day!)
+        </p>
+    </div>
+
+    <div class="test-section">
+        <h2>Layout Testing</h2>
+        <div style="display: flex; gap: 20px;">
+            <div style="flex: 1;">
+                <p class="selectable" id="left-column">
+                    Left column text for widget positioning tests.
+                </p>
+            </div>
+            <div style="flex: 1;">
+                <p class="selectable" id="right-column">
+                    Right column text for widget positioning tests.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Edge Cases</h2>
+        <p class="selectable" id="empty-text"></p>
+        <p class="selectable" id="single-word">QuickSpeak</p>
+        <p class="selectable" id="very-long-word">
+            Pneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosis
+        </p>
+    </div>
+
+    <script>
+        // Helper functions for tests
+        window.testHelpers = {
+            selectText: function(elementId) {
+                const element = document.getElementById(elementId);
+                const selection = window.getSelection();
+                const range = document.createRange();
+                range.selectNodeContents(element);
+                selection.removeAllRanges();
+                selection.addRange(range);
+                
+                // Trigger selection event
+                element.dispatchEvent(new Event('mouseup', { bubbles: true }));
+                return element.textContent.trim();
+            },
+            
+            clearSelection: function() {
+                window.getSelection().removeAllRanges();
+            },
+            
+            getWidgetPosition: function() {
+                const widget = document.getElementById('quickspeak-controls');
+                if (!widget) return null;
+                const rect = widget.getBoundingClientRect();
+                return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+            },
+            
+            isWidgetVisible: function() {
+                const widget = document.getElementById('quickspeak-controls');
+                return widget && widget.style.display !== 'none';
+            }
+        };
+    </script>
+</body>
+</html>

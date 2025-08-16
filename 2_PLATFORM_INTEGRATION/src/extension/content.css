@@ -1,0 +1,732 @@
+/* QuickSpeak Content Styles */
+
+/* Modal Styles */
+.quickspeak-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.quickspeak-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: quickspeak-fadeIn 0.2s ease-out;
+}
+
+.quickspeak-modal-content {
+  background: #111;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  max-width: 480px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: auto;
+  animation: quickspeak-modalSlideIn 0.3s ease-out;
+}
+
+.quickspeak-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #333;
+  background: #000;
+}
+
+.quickspeak-modal-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quickspeak-modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #888;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.quickspeak-modal-close:hover {
+  background: #333;
+  color: #fff;
+}
+
+.quickspeak-modal-body {
+  padding: 20px;
+  background: #111;
+}
+
+.quickspeak-text-display {
+  margin-bottom: 24px;
+}
+
+.quickspeak-text-display label {
+  display: block;
+  font-weight: 600;
+  color: #ccc;
+  margin-bottom: 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.quickspeak-selected-text {
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.quickspeak-report-options label {
+  display: block;
+  font-weight: 600;
+  color: #ccc;
+  margin-bottom: 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.quickspeak-option-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.quickspeak-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px;
+  background: #222;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.quickspeak-option-btn:hover {
+  background: #333;
+  border-color: #777;
+}
+
+.quickspeak-option-btn.active {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}
+
+.quickspeak-option-icon {
+  font-size: 24px;
+}
+
+.quickspeak-option-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.quickspeak-input-section {
+  margin-top: 16px;
+}
+
+.quickspeak-text-input label,
+.quickspeak-voice-input label {
+  display: block;
+  font-weight: 600;
+  color: #ccc;
+  margin-bottom: 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.quickspeak-text-input textarea {
+  width: 100%;
+  min-height: 70px;
+  padding: 10px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.quickspeak-text-input textarea:focus {
+  outline: none;
+  border-color: #fff;
+}
+
+.quickspeak-voice-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.quickspeak-record-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-size: 12px;
+}
+
+.quickspeak-record-button:hover {
+  background: #555;
+  border-color: #777;
+}
+
+.quickspeak-recording-status {
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+}
+
+.quickspeak-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid #333;
+  background: #000;
+}
+
+.quickspeak-btn {
+  padding: 8px 16px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.quickspeak-btn-secondary {
+  background: #333;
+  color: #ccc;
+  border-color: #555;
+}
+
+.quickspeak-btn-secondary:hover {
+  background: #555;
+  color: #fff;
+  border-color: #777;
+}
+
+.quickspeak-btn-primary {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.quickspeak-btn-primary:hover {
+  background: #ddd;
+  border-color: #ccc;
+}
+
+@keyframes quickspeak-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes quickspeak-modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Speech Controls Panel */
+.quickspeak-speech-controls {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 12px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  z-index: 10000;
+  animation: quickspeak-slideIn 0.3s ease-out;
+}
+
+.quickspeak-controls-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+}
+
+/* Control Buttons */
+.quickspeak-controls-container button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px);
+}
+
+.quickspeak-controls-container button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.quickspeak-controls-container button:active {
+  transform: translateY(0);
+}
+
+/* Speed Control */
+.quickspeak-speed-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quickspeak-speed-control label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+#quickspeak-speed {
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+#quickspeak-speed::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+#quickspeak-speed::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+#quickspeak-speed::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#quickspeak-speed-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Visual feedback when speaking */
+body.quickspeak-speaking {
+  /* Subtle visual indicator that TTS is active */
+}
+
+body.quickspeak-speaking .quickspeak-speech-controls {
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Messages */
+.quickspeak-message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  animation: quickspeak-slideIn 0.3s ease-out;
+  max-width: 300px;
+}
+
+.quickspeak-message-success {
+  background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.quickspeak-message-error {
+  background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.quickspeak-message-info {
+  background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(74, 144, 226, 0.3);
+}
+
+/* Permanent Message for Missing Voices */
+.quickspeak-permanent-message {
+  background: linear-gradient(135deg, #4a90e2 0%, #7b68ee 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.4);
+  backdrop-filter: blur(10px);
+  animation: quickspeak-slideIn 0.3s ease-out;
+  max-width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.quickspeak-permanent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quickspeak-permanent-header strong {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.quickspeak-permanent-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 8px;
+  transition: background 0.2s ease;
+}
+
+.quickspeak-permanent-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.quickspeak-permanent-body {
+  padding: 12px 20px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Settings & Skin Selector Modal - Minimalistic Theme */
+.quickspeak-settings-section {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #333;
+}
+
+.quickspeak-settings-section h4,
+.quickspeak-skin-presets h4,
+.quickspeak-skin-custom h4 {
+  margin: 0 0 12px 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Disable button removed - now handled by extension popup */
+
+.quickspeak-skin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.quickspeak-skin-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #222;
+}
+
+.quickspeak-skin-option:hover {
+  border-color: #777;
+  background: #333;
+}
+
+.quickspeak-skin-option.selected {
+  border-color: #fff;
+  background: #333;
+}
+
+.quickspeak-skin-preview {
+  width: 50px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #555;
+}
+
+.quickspeak-skin-option span {
+  font-size: 10px;
+  font-weight: 500;
+  color: #ccc;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.quickspeak-color-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quickspeak-color-inputs label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.quickspeak-color-inputs input[type="color"] {
+  width: 35px;
+  height: 25px;
+  border: 1px solid #555;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #333;
+}
+
+.quickspeak-btn {
+  background: #fff;
+  color: #000;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.quickspeak-btn:hover {
+  background: #ddd;
+  border-color: #fff;
+}
+
+/* Disabled Indicator */
+.quickspeak-disabled-indicator {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: quickspeak-fadeIn 0.5s ease-out;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.quickspeak-disabled-indicator:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.05);
+}
+
+.quickspeak-indicator-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 12px;
+  color: white;
+}
+
+.quickspeak-indicator-icon {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.quickspeak-indicator-text {
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.quickspeak-indicator-hint {
+  font-size: 9px;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+
+/* Report Button Special Styling */
+#quickspeak-report {
+  position: relative;
+}
+
+#quickspeak-report:hover::after {
+  content: 'Report pronunciation error';
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 10001;
+}
+
+/* Close button */
+#quickspeak-close {
+  background: rgba(255, 255, 255, 0.1) !important;
+  font-weight: bold;
+  min-width: 32px;
+}
+
+#quickspeak-close:hover {
+  background: rgba(255, 0, 0, 0.3) !important;
+}
+
+/* Animations */
+@keyframes quickspeak-slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .quickspeak-speech-controls {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .quickspeak-controls-container {
+    gap: 8px;
+  }
+  
+  .quickspeak-controls-container button {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  
+  .quickspeak-speed-control {
+    padding: 4px 8px;
+  }
+  
+  #quickspeak-speed {
+    width: 60px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .quickspeak-speech-controls {
+    background: #000;
+    border: 2px solid #fff;
+  }
+  
+  .quickspeak-controls-container button {
+    background: #333;
+    border: 1px solid #fff;
+  }
+  
+  .quickspeak-controls-container button:hover {
+    background: #555;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .quickspeak-speech-controls,
+  .quickspeak-message {
+    animation: none;
+  }
+  
+  .quickspeak-controls-container button {
+    transition: none;
+  }
+  
+  .quickspeak-controls-container button:hover {
+    transform: none;
+  }
+}

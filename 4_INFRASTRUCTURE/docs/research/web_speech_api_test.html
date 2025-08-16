@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Speech API Comprehensive Test for QuickSpeak Extension</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .controls {
+            margin: 10px 0;
+        }
+        .controls button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .results {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            min-height: 100px;
+            white-space: pre-wrap;
+        }
+        .test-text {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px 0;
+            background-color: white;
+            cursor: pointer;
+        }
+        .test-text:hover {
+            background-color: #e6f3ff;
+        }
+        .selected {
+            background-color: #b3d9ff !important;
+        }
+        .voice-item {
+            margin: 5px 0;
+            padding: 5px;
+            border: 1px solid #eee;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .status.success { background-color: #d4edda; color: #155724; }
+        .status.error { background-color: #f8d7da; color: #721c24; }
+        .status.warning { background-color: #fff3cd; color: #856404; }
+        .performance-data {
+            font-family: monospace;
+            font-size: 12px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        input[type="range"] {
+            width: 200px;
+            margin: 0 10px;
+        }
+        .language-tests {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .language-test {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Speech API Comprehensive Test for QuickSpeak Extension</h1>
+    <p><strong>Browser:</strong> <span id="browserInfo"></span></p>
+    <p><strong>User Agent:</strong> <span id="userAgent"></span></p>
+    <p><strong>HTTPS Status:</strong> <span id="httpsStatus"></span></p>
+
+    <!-- Browser Compatibility Check -->
+    <div class="test-section">
+        <h2>1. Browser Compatibility Check</h2>
+        <div id="compatibilityResults" class="results"></div>
+        <button onclick="checkCompatibility()">Check Compatibility</button>
+    </div>
+
+    <!-- Available Voices -->
+    <div class="test-section">
+        <h2>2. Available Voices & Language Support</h2>
+        <div class="controls">
+            <button onclick="loadVoices()">Load Available Voices</button>
+            <button onclick="filterVoices('ja')">Japanese Voices</button>
+            <button onclick="filterVoices('zh')">Chinese Voices</button>
+            <button onclick="filterVoices('ko')">Korean Voices</button>
+            <button onclick="filterVoices('es')">Spanish Voices</button>
+            <button onclick="filterVoices('fr')">French Voices</button>
+            <button onclick="filterVoices('')">All Voices</button>
+        </div>
+        <div id="voicesResults" class="results"></div>
+    </div>
+
+    <!-- Text Selection Detection -->
+    <div class="test-section">
+        <h2>3. Text Selection Detection Test</h2>
+        <p>Select text below to test selection detection:</p>
+        <div class="test-text" id="selectionTest">
+            This is a test paragraph for text selection. Try selecting different parts of this text to see how the selection API works. You can select individual words, sentences, or the entire paragraph. The extension should be able to detect your selection and prepare it for text-to-speech conversion.
+        </div>
+        <div id="selectionResults" class="results">Selected text will appear here...</div>
+        <button onclick="speakSelected()">Speak Selected Text</button>
+    </div>
+
+    <!-- Voice Quality & Speed Control -->
+    <div class="test-section">
+        <h2>4. Voice Quality & Speed Control</h2>
+        <div class="controls">
+            <label>Voice: <select id="voiceSelect"></select></label><br><br>
+            <label>Rate: <input type="range" id="rateSlider" min="0.1" max="3" step="0.1" value="1"> <span id="rateValue">1</span></label><br>
+            <label>Pitch: <input type="range" id="pitchSlider" min="0" max="2" step="0.1" value="1"> <span id="pitchValue">1</span></label><br>
+            <label>Volume: <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1"> <span id="volumeValue">1</span></label><br><br>
+            <button onclick="testVoiceQuality()">Test Voice Quality</button>
+            <button onclick="stopSpeech()">Stop Speech</button>
+        </div>
+        <div id="voiceQualityResults" class="results">Voice quality test results will appear here...</div>
+    </div>
+
+    <!-- Text Length Limits -->
+    <div class="test-section">
+        <h2>5. Text Length Limits Test</h2>
+        <div class="controls">
+            <button onclick="testShortText()">Test Short Text (50 words)</button>
+            <button onclick="testMediumText()">Test Medium Text (200 words)</button>
+            <button onclick="testLongText()">Test Long Text (500 words)</button>
+            <button onclick="testVeryLongText()">Test Very Long Text (1000+ words)</button>
+        </div>
+        <div id="lengthResults" class="results">Text length test results will appear here...</div>
+    </div>
+
+    <!-- Performance & Latency -->
+    <div class="test-section">
+        <h2>6. Performance & Latency Test</h2>
+        <div class="controls">
+            <button onclick="testPerformance()">Run Performance Test</button>
+            <button onclick="testReliability()">Test Reliability (10 iterations)</button>
+        </div>
+        <div id="performanceResults" class="results">Performance test results will appear here...</div>
+    </div>
+
+    <!-- Language Support Tests -->
+    <div class="test-section">
+        <h2>7. Multi-Language Support Test</h2>
+        <div class="language-tests">
+            <div class="language-test">
+                <h3>Japanese</h3>
+                <div>こんにちは。私の名前は田中です。今日は良い天気ですね。</div>
+                <button onclick="testLanguage('ja', 'こんにちは。私の名前は田中です。今日は良い天気ですね。')">Test Japanese</button>
+            </div>
+            <div class="language-test">
+                <h3>Chinese (Simplified)</h3>
+                <div>你好，我叫张三。今天天气很好。</div>
+                <button onclick="testLanguage('zh-CN', '你好，我叫张三。今天天气很好。')">Test Chinese</button>
+            </div>
+            <div class="language-test">
+                <h3>Korean</h3>
+                <div>안녕하세요. 제 이름은 김철수입니다. 오늘 날씨가 좋네요.</div>
+                <button onclick="testLanguage('ko', '안녕하세요. 제 이름은 김철수입니다. 오늘 날씨가 좋네요.')">Test Korean</button>
+            </div>
+            <div class="language-test">
+                <h3>Spanish</h3>
+                <div>Hola, me llamo María. Hoy hace muy buen tiempo.</div>
+                <button onclick="testLanguage('es', 'Hola, me llamo María. Hoy hace muy buen tiempo.')">Test Spanish</button>
+            </div>
+            <div class="language-test">
+                <h3>French</h3>
+                <div>Bonjour, je m'appelle Pierre. Il fait beau aujourd'hui.</div>
+                <button onclick="testLanguage('fr', 'Bonjour, je m\'appelle Pierre. Il fait beau aujourd\'hui.')">Test French</button>
+            </div>
+        </div>
+        <div id="languageResults" class="results">Language test results will appear here...</div>
+    </div>
+
+    <!-- Offline Test -->
+    <div class="test-section">
+        <h2>8. Offline Capabilities Test</h2>
+        <div class="controls">
+            <button onclick="testOfflineCapabilities()">Test Offline Voices</button>
+            <p><em>Note: To test offline capabilities, disable your internet connection and try the test above.</em></p>
+        </div>
+        <div id="offlineResults" class="results">Offline test results will appear here...</div>
+    </div>
+
+    <script>
+        // Global variables
+        let voices = [];
+        let currentVoice = null;
+        let selectedText = '';
+        let performanceData = [];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBrowserInfo();
+            setupEventListeners();
+            loadVoices();
+        });
+
+        function updateBrowserInfo() {
+            const browserInfo = getBrowserInfo();
+            document.getElementById('browserInfo').textContent = browserInfo;
+            document.getElementById('userAgent').textContent = navigator.userAgent;
+            document.getElementById('httpsStatus').textContent = location.protocol === 'https:' ? 'Secure (HTTPS)' : 'Not Secure (HTTP)';
+        }
+
+        function getBrowserInfo() {
+            const ua = navigator.userAgent;
+            if (ua.includes('Chrome') && !ua.includes('Edg')) return 'Chrome';
+            if (ua.includes('Firefox')) return 'Firefox';
+            if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari';
+            if (ua.includes('Edg')) return 'Edge';
+            return 'Unknown';
+        }
+
+        function setupEventListeners() {
+            // Text selection detection
+            document.addEventListener('selectionchange', handleSelectionChange);
+            
+            // Voice control sliders
+            document.getElementById('rateSlider').addEventListener('input', function(e) {
+                document.getElementById('rateValue').textContent = e.target.value;
+            });
+            
+            document.getElementById('pitchSlider').addEventListener('input', function(e) {
+                document.getElementById('pitchValue').textContent = e.target.value;
+            });
+            
+            document.getElementById('volumeSlider').addEventListener('input', function(e) {
+                document.getElementById('volumeValue').textContent = e.target.value;
+            });
+
+            // Voice loading event
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+        }
+
+        function checkCompatibility() {
+            const results = document.getElementById('compatibilityResults');
+            let report = 'Browser Compatibility Report:\n\n';
+
+            // Check Speech Synthesis
+            if ('speechSynthesis' in window) {
+                report += '✅ Speech Synthesis API: Supported\n';
+            } else {
+                report += '❌ Speech Synthesis API: Not Supported\n';
+            }
+
+            // Check Speech Recognition
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                report += '✅ Speech Recognition API: Supported\n';
+            } else {
+                report += '❌ Speech Recognition API: Not Supported\n';
+            }
+
+            // Check Selection API
+            if ('getSelection' in window) {
+                report += '✅ Selection API: Supported\n';
+            } else {
+                report += '❌ Selection API: Not Supported\n';
+            }
+
+            // Check HTTPS requirement
+            if (location.protocol === 'https:' || location.hostname === 'localhost') {
+                report += '✅ Secure Context: Available\n';
+            } else {
+                report += '⚠️ Secure Context: May be required for full functionality\n';
+            }
+
+            results.textContent = report;
+        }
+
+        function loadVoices() {
+            voices = speechSynthesis.getVoices();
+            updateVoiceSelect();
+            displayVoices();
+        }
+
+        function updateVoiceSelect() {
+            const select = document.getElementById('voiceSelect');
+            select.innerHTML = '';
+            
+            voices.forEach((voice, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `${voice.name} (${voice.lang}) ${voice.localService ? '[Local]' : '[Remote]'}`;
+                select.appendChild(option);
+            });
+        }
+
+        function displayVoices(filter = '') {
+            const results = document.getElementById('voicesResults');
+            const filteredVoices = filter ? voices.filter(voice => voice.lang.includes(filter)) : voices;
+            
+            let report = `Total voices available: ${voices.length}\n`;
+            if (filter) {
+                report += `Voices matching "${filter}": ${filteredVoices.length}\n`;
+            }
+            report += '\nVoice Details:\n';
+            
+            filteredVoices.forEach((voice, index) => {
+                report += `${index + 1}. ${voice.name}\n`;
+                report += `   Language: ${voice.lang}\n`;
+                report += `   Local: ${voice.localService ? 'Yes' : 'No'}\n`;
+                report += `   Default: ${voice.default ? 'Yes' : 'No'}\n`;
+                report += `   URI: ${voice.voiceURI}\n\n`;
+            });
+            
+            results.textContent = report;
+        }
+
+        function filterVoices(lang) {
+            displayVoices(lang);
+        }
+
+        function handleSelectionChange() {
+            const selection = window.getSelection();
+            selectedText = selection.toString().trim();
+            
+            if (selectedText) {
+                document.getElementById('selectionResults').textContent = 
+                    `Selected: "${selectedText}"\nLength: ${selectedText.length} characters`;
+            }
+        }
+
+        function speakSelected() {
+            if (!selectedText) {
+                alert('Please select some text first');
+                return;
+            }
+            speak(selectedText, 'Selected text speech test');
+        }
+
+        function testVoiceQuality() {
+            const testText = "This is a voice quality test. The quick brown fox jumps over the lazy dog. How does this voice sound to you?";
+            speak(testText, 'Voice quality test');
+        }
+
+        function speak(text, context = '') {
+            if (!('speechSynthesis' in window)) {
+                alert('Speech Synthesis not supported');
+                return;
+            }
+
+            const startTime = performance.now();
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            // Apply current settings
+            const voiceIndex = document.getElementById('voiceSelect').value;
+            if (voiceIndex && voices[voiceIndex]) {
+                utterance.voice = voices[voiceIndex];
+            }
+            
+            utterance.rate = parseFloat(document.getElementById('rateSlider').value);
+            utterance.pitch = parseFloat(document.getElementById('pitchSlider').value);
+            utterance.volume = parseFloat(document.getElementById('volumeSlider').value);
+
+            // Event handlers for performance tracking
+            utterance.onstart = function() {
+                const latency = performance.now() - startTime;
+                console.log(`Speech started - Latency: ${latency.toFixed(2)}ms`);
+                if (context) {
+                    logPerformance(context, latency, text.length, utterance.voice);
+                }
+            };
+
+            utterance.onend = function() {
+                const totalTime = performance.now() - startTime;
+                console.log(`Speech completed - Total time: ${totalTime.toFixed(2)}ms`);
+            };
+
+            utterance.onerror = function(event) {
+                console.error('Speech error:', event.error);
+                alert(`Speech error: ${event.error}`);
+            };
+
+            speechSynthesis.speak(utterance);
+        }
+
+        function stopSpeech() {
+            speechSynthesis.cancel();
+        }
+
+        function logPerformance(context, latency, textLength, voice) {
+            const data = {
+                context: context,
+                latency: latency,
+                textLength: textLength,
+                voice: voice ? voice.name : 'Default',
+                timestamp: new Date().toISOString()
+            };
+            performanceData.push(data);
+        }
+
+        function testShortText() {
+            const text = "This is a short text test with approximately fifty words to evaluate how the Web Speech API handles typical sentence lengths that would be common in browser extension usage scenarios.";
+            speak(text, 'Short text test');
+            document.getElementById('lengthResults').textContent = `Testing short text (${text.length} characters, ~50 words)`;
+        }
+
+        function testMediumText() {
+            const text = "This is a medium-length text test designed to evaluate how the Web Speech API performs with longer content. This test includes multiple sentences and various punctuation marks to assess the quality of speech synthesis with more complex text structures. The text contains approximately two hundred words and includes different sentence types, including declarative, interrogative, and exclamatory sentences. Does the voice maintain consistent quality throughout? Can it handle punctuation properly? These are important questions for a text-to-speech browser extension that needs to work reliably with various types of web content, from news articles to blog posts to social media content.";
+            speak(text, 'Medium text test');
+            document.getElementById('lengthResults').textContent = `Testing medium text (${text.length} characters, ~200 words)`;
+        }
+
+        function testLongText() {
+            const text = "This is a comprehensive long text test designed to thoroughly evaluate the Web Speech API's capability to handle substantial amounts of content that might be encountered in real-world browser extension usage. This test encompasses approximately five hundred words and includes various text formatting scenarios, different punctuation marks, numbers, and special characters that commonly appear in web content. The purpose of this extended test is to determine whether the speech synthesis maintains consistent quality throughout longer passages, how it handles memory management, and whether there are any performance degradation issues when processing larger text blocks. Browser extensions for text-to-speech functionality must be able to handle everything from short social media posts to lengthy blog articles, academic papers, and news stories. Users expect reliable performance regardless of content length. This test will help identify any limitations in text processing length, memory usage patterns, and overall stability of the Web Speech API when used in production scenarios. Additionally, we want to assess how well the API handles continuous speech output, whether there are any interruptions, pauses, or quality changes during extended speech synthesis sessions. The reliability and consistency of voice output over longer durations is crucial for user satisfaction and adoption of text-to-speech browser extensions.";
+            speak(text, 'Long text test');
+            document.getElementById('lengthResults').textContent = `Testing long text (${text.length} characters, ~500 words)`;
+        }
+
+        function testVeryLongText() {
+            const text = "This is an extremely comprehensive and extensive text test specifically designed to push the boundaries of the Web Speech API's processing capabilities and to identify any potential limitations when handling very large amounts of textual content. This particular test contains over one thousand words and represents the type of extensive content that users might encounter when using a text-to-speech browser extension with lengthy articles, research papers, documentation, or books. The primary objectives of this test include evaluating the API's memory management capabilities, assessing performance stability over extended periods, identifying any potential timeout issues, and determining whether the speech synthesis quality remains consistent throughout the entire duration of the extended speech output session. In real-world applications, users of text-to-speech browser extensions often need to process substantial amounts of content, ranging from comprehensive news articles and detailed blog posts to academic research papers and technical documentation. The extension must perform reliably across all these scenarios without experiencing crashes, memory issues, or significant performance degradation. This test also helps identify potential browser-specific limitations that might affect the extension's functionality across different platforms and browsers. Each browser implementation of the Web Speech API may have different constraints regarding text length, processing time, and resource utilization. Understanding these limitations is crucial for developing a robust and reliable browser extension that provides consistent user experience across different browsers and operating systems. Furthermore, this test evaluates how well the API handles complex text structures, including various punctuation marks, numerical data, special characters, and different sentence constructions that are commonly found in diverse web content. The speech synthesis should maintain natural-sounding output throughout the entire passage while properly interpreting punctuation for appropriate pauses and intonation changes.";
+            speak(text, 'Very long text test');
+            document.getElementById('lengthResults').textContent = `Testing very long text (${text.length} characters, 1000+ words)`;
+        }
+
+        function testPerformance() {
+            const results = document.getElementById('performanceResults');
+            results.textContent = 'Running performance test...\n';
+            
+            const testTexts = [
+                "Short test.",
+                "This is a medium length test sentence with more words.",
+                "This is a longer test sentence that contains significantly more content to evaluate performance with increased text length and complexity."
+            ];
+            
+            let testIndex = 0;
+            
+            function runNextTest() {
+                if (testIndex >= testTexts.length) {
+                    displayPerformanceResults();
+                    return;
+                }
+                
+                const text = testTexts[testIndex];
+                const startTime = performance.now();
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                utterance.onstart = function() {
+                    const latency = performance.now() - startTime;
+                    logPerformance(`Performance test ${testIndex + 1}`, latency, text.length, utterance.voice);
+                };
+                
+                utterance.onend = function() {
+                    testIndex++;
+                    setTimeout(runNextTest, 1000); // Wait 1 second between tests
+                };
+                
+                speechSynthesis.speak(utterance);
+            }
+            
+            runNextTest();
+        }
+
+        function testReliability() {
+            const results = document.getElementById('performanceResults');
+            results.textContent = 'Running reliability test (10 iterations)...\n';
+            
+            const testText = "Reliability test iteration number ";
+            let iteration = 0;
+            let successCount = 0;
+            let errorCount = 0;
+            
+            function runIteration() {
+                if (iteration >= 10) {
+                    results.textContent += `\nReliability Test Complete:\nSuccessful: ${successCount}/10\nErrors: ${errorCount}/10\nReliability: ${(successCount/10*100).toFixed(1)}%`;
+                    return;
+                }
+                
+                iteration++;
+                const utterance = new SpeechSynthesisUtterance(testText + iteration);
+                
+                utterance.onstart = function() {
+                    successCount++;
+                };
+                
+                utterance.onerror = function() {
+                    errorCount++;
+                };
+                
+                utterance.onend = function() {
+                    setTimeout(runIteration, 500);
+                };
+                
+                speechSynthesis.speak(utterance);
+            }
+            
+            runIteration();
+        }
+
+        function displayPerformanceResults() {
+            const results = document.getElementById('performanceResults');
+            let report = 'Performance Test Results:\n\n';
+            
+            performanceData.slice(-3).forEach((data, index) => {
+                report += `Test ${index + 1}: ${data.context}\n`;
+                report += `  Latency: ${data.latency.toFixed(2)}ms\n`;
+                report += `  Text Length: ${data.textLength} characters\n`;
+                report += `  Voice: ${data.voice}\n`;
+                report += `  Characters per ms: ${(data.textLength / data.latency).toFixed(2)}\n\n`;
+            });
+            
+            results.textContent = report;
+        }
+
+        function testLanguage(lang, text) {
+            const availableVoices = voices.filter(voice => voice.lang.includes(lang));
+            const results = document.getElementById('languageResults');
+            
+            if (availableVoices.length === 0) {
+                results.textContent += `❌ No voices available for ${lang}\n`;
+                return;
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.voice = availableVoices[0]; // Use first available voice
+            utterance.lang = lang;
+            
+            utterance.onstart = function() {
+                results.textContent += `✅ Testing ${lang} with voice: ${utterance.voice.name}\n`;
+                results.textContent += `   Text: "${text}"\n\n`;
+            };
+            
+            utterance.onerror = function(event) {
+                results.textContent += `❌ Error testing ${lang}: ${event.error}\n\n`;
+            };
+            
+            speechSynthesis.speak(utterance);
+        }
+
+        function testOfflineCapabilities() {
+            const results = document.getElementById('offlineResults');
+            const localVoices = voices.filter(voice => voice.localService);
+            const remoteVoices = voices.filter(voice => !voice.localService);
+            
+            let report = `Offline Capability Analysis:\n\n`;
+            report += `Local voices available: ${localVoices.length}\n`;
+            report += `Remote voices available: ${remoteVoices.length}\n\n`;
+            
+            if (localVoices.length > 0) {
+                report += `Local voices (should work offline):\n`;
+                localVoices.forEach(voice => {
+                    report += `  - ${voice.name} (${voice.lang})\n`;
+                });
+                report += '\n';
+            }
+            
+            if (remoteVoices.length > 0) {
+                report += `Remote voices (require internet):\n`;
+                remoteVoices.forEach(voice => {
+                    report += `  - ${voice.name} (${voice.lang})\n`;
+                });
+            }
+            
+            // Test with a local voice if available
+            if (localVoices.length > 0) {
+                const utterance = new SpeechSynthesisUtterance("Testing offline capability with local voice.");
+                utterance.voice = localVoices[0];
+                
+                utterance.onstart = function() {
+                    report += `\n✅ Successfully tested local voice: ${utterance.voice.name}`;
+                    results.textContent = report;
+                };
+                
+                utterance.onerror = function(event) {
+                    report += `\n❌ Error testing local voice: ${event.error}`;
+                    results.textContent = report;
+                };
+                
+                speechSynthesis.speak(utterance);
+            }
+            
+            results.textContent = report;
+        }
+    </script>
+</body>
+</html>

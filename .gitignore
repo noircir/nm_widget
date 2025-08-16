@@ -1,0 +1,75 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# API Keys and Secrets
+**/api-keys/
+**/*-key.json
+**/secrets/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Browser extension packaging
+*.zip
+*.crx
+*.pem
+
+# Testing
+coverage/
+*.coverage
+.nyc_output
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Cache directories
+.cache/
+.tmp/
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Supabase local development
+.supabase/
+
+# Chrome extension development
+manifest.json.backup

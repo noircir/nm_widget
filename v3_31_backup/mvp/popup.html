@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NativeMimic</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="popup-container">
+        <!-- Header with Logo -->
+        <div class="popup-header">
+            <div class="logo">
+                <div class="logo-text">
+                    <h1>NativeMimic</h1>
+                    <span class="tagline">Text to Speech</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Display -->
+        <div class="status-section">
+            <div class="status-indicator">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="statusText">Checking...</span>
+            </div>
+        </div>
+
+        <!-- Main Actions -->
+        <div class="actions-section">
+            <button id="toggleExtension" class="secondary-btn">
+                <span id="toggleText">Disable Extension</span>
+            </button>
+        </div>
+
+        <!-- Keyboard Shortcuts -->
+        <div class="shortcuts-section">
+            <h3>Keyboard Shortcuts</h3>
+            <div class="shortcuts-list">
+                <div class="shortcut-item">
+                    <span class="shortcut-keys">Ctrl+Shift+E</span>
+                    <span class="shortcut-desc">Enable/Disable Extension</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-keys">Ctrl+Shift+S</span>
+                    <span class="shortcut-desc">Speak Selected Text</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-keys">Ctrl+Shift+P</span>
+                    <span class="shortcut-desc">Pause/Resume Speech</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-keys">Ctrl+Shift+ +/-</span>
+                    <span class="shortcut-desc">Adjust Speed While Speaking</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-keys">Ctrl+Shift+X</span>
+                    <span class="shortcut-desc">Stop Speech</span>
+                </div>
+                <div class="shortcut-item">
+                    <span class="shortcut-keys">Ctrl+Shift+R</span>
+                    <span class="shortcut-desc">Record Pronunciation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="popup-footer">
+            <div class="version">v3.31</div>
+            <div class="quick-tip">
+                💡 Select text on any webpage to start practicing
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

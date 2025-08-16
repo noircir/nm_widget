@@ -1,0 +1,2772 @@
+/* NativeMimic Content Styles */
+
+/* Modal Styles - Apple-like Design */
+.nativemimic-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2147483647; /* Maximum z-index value to stay above dev tools */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Language Selection Modal */
+.nativemimic-language-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2147483647;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.nativemimic-language-content {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  max-width: 400px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: nativemimic-modalSlideIn 0.3s ease-out;
+}
+
+.nativemimic-language-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.nativemimic-language-header > div {
+  flex: 1;
+}
+
+.nativemimic-language-close {
+  background: rgba(120, 120, 128, 0.16);
+  border: none;
+  font-size: 18px;
+  color: #6e6e73;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nativemimic-language-close:hover {
+  background: rgba(120, 120, 128, 0.24);
+  color: #1d1d1f;
+}
+
+.nativemimic-language-content h2 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.nativemimic-language-content .subtitle {
+  color: #6e6e73;
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.nativemimic-language-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.nativemimic-language-option {
+  background: #f5f5f7;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 6px 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.nativemimic-language-option:hover {
+  background: #e8e8ed;
+  transform: translateY(-2px);
+}
+
+.nativemimic-language-option.selected {
+  background: #1d1d1f;
+  border-color: #1d1d1f;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 29, 31, 0.25);
+}
+
+.nativemimic-language-option .flag {
+  font-size: 32px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.nativemimic-language-option .name {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.nativemimic-language-option .desc {
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.nativemimic-language-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.nativemimic-language-btn {
+  background: #1d1d1f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nativemimic-language-btn:hover {
+  background: #2c2c2e;
+  transform: translateY(-1px);
+}
+
+.nativemimic-language-btn.secondary {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.nativemimic-language-btn.secondary:hover {
+  background: #e8e8ed;
+}
+
+.nativemimic-language-btn.small {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+/* Premium Section in Language Modal */
+.nativemimic-premium-section {
+  margin: 12px 0 0 0;
+  padding: 12px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f8ff 100%);
+  border: 1px solid #e1e8ff;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.nativemimic-premium-header h3 {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+  text-align: center;
+}
+
+.nativemimic-premium-header p {
+  margin: 0 0 8px 0;
+  color: #6e6e73;
+  font-size: 12px;
+  text-align: center;
+}
+
+.nativemimic-api-key-input {
+  margin-top: 12px;
+}
+
+.nativemimic-api-key-input .nativemimic-input-group {
+  margin-bottom: 8px;
+}
+
+.nativemimic-api-key-input .nativemimic-input-group input {
+  background: white;
+  border: 1px solid #d1d1d6;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.nativemimic-api-key-input .nativemimic-input-group input:focus {
+  outline: none;
+  border-color: #007aff;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+@keyframes nativemimic-modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nativemimic-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: nativemimic-fadeIn 0.2s ease-out;
+}
+
+.nativemimic-modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  max-width: 480px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: hidden;
+  animation: nativemimic-modalSlideIn 0.3s ease-out;
+}
+
+.nativemimic-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(248, 248, 248, 0.8);
+  backdrop-filter: blur(20px);
+}
+
+.nativemimic-modal-header h3 {
+  margin: 0;
+  color: #1d1d1f;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.nativemimic-modal-close {
+  background: rgba(120, 120, 128, 0.16);
+  border: none;
+  font-size: 16px;
+  color: #6e6e73;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 1;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.nativemimic-modal-close:hover {
+  background: rgba(120, 120, 128, 0.24);
+  color: #1d1d1f;
+}
+
+.nativemimic-modal-body {
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.nativemimic-text-display {
+  margin-bottom: 24px;
+}
+
+.nativemimic-text-display label {
+  display: block;
+  font-weight: 500;
+  color: #6e6e73;
+  margin-bottom: 8px;
+  font-size: 13px;
+  letter-spacing: -0.2px;
+}
+
+.nativemimic-selected-text {
+  background: #f2f2f7;
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 400;
+}
+
+.nativemimic-report-options label {
+  display: block;
+  font-weight: 500;
+  color: #6e6e73;
+  margin-bottom: 12px;
+  font-size: 13px;
+  letter-spacing: -0.2px;
+}
+
+.nativemimic-option-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.nativemimic-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px;
+  background: #f2f2f7;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.nativemimic-option-btn:hover {
+  background: #e8e8ed;
+  border-color: rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+}
+
+.nativemimic-option-btn.active {
+  background: #1d1d1f;
+  border-color: #1d1d1f;
+  color: #fff;
+  transform: scale(1.02);
+}
+
+.nativemimic-option-icon {
+  font-size: 18px;
+}
+
+.nativemimic-option-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: inherit;
+  letter-spacing: -0.2px;
+}
+
+.nativemimic-input-section {
+  margin-top: 16px;
+}
+
+.nativemimic-text-input label,
+.nativemimic-voice-input label {
+  display: block;
+  font-weight: 500;
+  color: #6e6e73;
+  margin-bottom: 8px;
+  font-size: 13px;
+  letter-spacing: -0.2px;
+}
+
+.nativemimic-text-input textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  background: #f2f2f7;
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  transition: all 0.2s ease;
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+.nativemimic-text-input textarea:focus {
+  outline: none;
+  border-color: #007aff;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.nativemimic-voice-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.nativemimic-record-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #f2f2f7;
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: -0.2px;
+  font-size: 13px;
+}
+
+/* Removed hover effect for record button */
+
+.nativemimic-recording-status {
+  font-size: 13px;
+  color: #6e6e73;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Comparison Interface Styles */
+.nativemimic-comparison-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Reduced from 16px */
+}
+
+.nativemimic-comparison-section {
+  display: flex;
+  flex-direction: row; /* Changed to horizontal layout for side-by-side buttons */
+  gap: 8px; /* Gap between buttons */
+  align-items: flex-start;
+}
+
+.nativemimic-comparison-section .nativemimic-comparison-label {
+  display: none; /* Hide step labels since buttons are now side-by-side */
+}
+
+.nativemimic-comparison-label {
+  font-size: 11px; /* Reduced from 12px */
+  font-weight: 500;
+  color: #6e6e73;
+  text-align: left;
+  margin-bottom: 0; /* Remove any default margin */
+}
+
+.nativemimic-comparison-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px; /* Increased back for better readability */
+  background: #f2f2f7;
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: -0.2px;
+  font-size: 13px; /* Increased back to readable size */
+  flex: 1; /* Make buttons equal width to fill container */
+  min-width: 0; /* Allow buttons to shrink if needed */
+}
+
+.nativemimic-comparison-button:hover {
+  background: #e8e8ed;
+  border-color: rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+}
+
+.nativemimic-comparison-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Playback Comparison Styles */
+.nativemimic-playback-comparison {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* Widget Compare Controls */
+.nativemimic-compare-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nativemimic-compare-section {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.nativemimic-compare-btn {
+  flex: 1;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  min-width: 70px;
+}
+
+.nativemimic-compare-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.02);
+}
+
+/* Submit Button Styling (primary action) */
+.nativemimic-submit-button {
+  background: #007aff !important;
+  color: #ffffff !important;
+  border-color: #007aff !important;
+}
+
+.nativemimic-submit-button:hover {
+  background: #0056cc !important;
+  border-color: #0056cc !important;
+}
+
+.nativemimic-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px; /* Reduced to match comparison button spacing */
+  padding: 16px 24px 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(248, 248, 248, 0.8);
+  backdrop-filter: blur(20px);
+}
+
+/* Footer buttons using comparison button style */
+.nativemimic-modal-footer .nativemimic-comparison-button {
+  flex: none; /* Don't expand footer buttons like the main comparison buttons */
+  min-width: 90px; /* Increased minimum width for better readability */
+  padding: 8px 16px !important; /* Ensure adequate padding for footer buttons */
+}
+
+.nativemimic-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  letter-spacing: -0.2px;
+}
+
+.nativemimic-btn-secondary {
+  background: rgba(120, 120, 128, 0.16);
+  color: #1d1d1f;
+}
+
+.nativemimic-btn-secondary:hover {
+  background: rgba(120, 120, 128, 0.24);
+  transform: scale(1.02);
+}
+
+.nativemimic-btn-primary {
+  background: #007aff;
+  color: #fff;
+}
+
+.nativemimic-btn-primary:hover {
+  background: #0056cc;
+  transform: scale(1.02);
+}
+
+@keyframes nativemimic-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes nativemimic-modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Speech Controls Panel - Modern Minimal Design */
+.nativemimic-speech-controls {
+  /* Light theme retro aesthetic - compact 2-row layout */
+  background-color: #e8e8e8;
+  border: 2px solid #d0d0d0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  z-index: 2147483646; /* High z-index to stay above dev tools but below modals */
+  animation: nativemimic-slideIn 0.2s ease-out;
+  width: 520px; /* Wider to accommodate 2-row layout with proper spacing */
+  overflow: visible; /* Ensure dropdowns can extend beyond widget bounds */
+  box-shadow: rgba(0, 0, 0, 0.3) 8px 8px 16px, 
+              inset #f0f0f0 1px 1px 2px 0px, 
+              inset #d8d8d8 -2px -2px 4px 0px;
+}
+
+/* Widget Container - Two Row Layout */
+.nativemimic-widget-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #5f5f5f;
+}
+
+/* Top Row - Audio Playback Controls */
+.nativemimic-playback-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+/* Bottom Row - Recording & Administrative Controls */
+.nativemimic-recording-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+/* Speed Control Specific Styling for Top Row */
+.nativemimic-playback-row .nativemimic-speed-control {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: #d8d8d8;
+  padding: 2px 6px;
+  border-radius: 6px;
+  box-shadow: inset 1px 1px 2px #b0b0b0, 
+              inset -1px -1px 2px #f0f0f0;
+  flex-shrink: 0;
+  min-width: 100px;
+  max-width: 120px;
+}
+
+.nativemimic-playback-row .nativemimic-speed-control label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #5f5f5f;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  white-space: nowrap;
+}
+
+/* Compact speed slider for playback row */
+.nativemimic-playback-row .nativemimic-speed-control input[type="range"] {
+  width: 60px;
+  flex-shrink: 0;
+}
+
+.nativemimic-playback-row .nativemimic-speed-control span {
+  font-size: 10px;
+  min-width: 25px;
+  text-align: center;
+}
+
+/* Ensure voice control fits properly in top row */
+.nativemimic-playback-row .nativemimic-voice-control {
+  flex-shrink: 0;
+  min-width: 180px;
+  max-width: 220px;
+}
+
+/* Playback row button sizing */
+.nativemimic-playback-row .nativemimic-play-button,
+.nativemimic-playback-row .nativemimic-stop-button {
+  flex-shrink: 0;
+  min-width: 50px;
+  max-width: 60px;
+  padding: 6px 8px;
+  font-size: 11px;
+}
+
+/* Recording row button spacing */
+.nativemimic-recording-row button {
+  flex-shrink: 0;
+}
+
+/* Make record button more prominent in bottom row */
+.nativemimic-recording-row .nativemimic-record-button {
+  margin-left: auto;
+  margin-right: 4px;
+}
+
+/* Position Play Recording button closer to Record Again */
+.nativemimic-recording-row .nativemimic-play-recording-button {
+  margin-left: auto;
+  margin-right: 0px;
+}
+
+/* Keep Record Again button very close to Play Recording */
+.nativemimic-recording-row #nativemimic-record-again {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+/* Separator Lines - Light Theme */
+.nativemimic-separator {
+  width: 1px;
+  height: 20px;
+  background: #c0c0c0;
+  margin: 0 6px;
+  box-shadow: inset -1px 0px 0px #b0b0b0, 1px 0px 0px #f0f0f0;
+}
+
+/* Retro 1980s Button Styles */
+
+/* Play Button - Light Gray Retro */
+.nativemimic-play-button {
+  background-color: #c7c3c0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #5f5f5f;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: 0.1s ease-in-out;
+  min-width: 50px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.377) 4px 4px 6px,
+              #ffffff 1.5px 1.5px 2px 0px inset, 
+              #c7c3c0 -2px -2px 4px 0px inset;
+}
+
+.nativemimic-play-button:hover {
+  transform: translateY(-1px);
+}
+
+.nativemimic-play-button:active {
+  box-shadow: rgba(0, 0, 0, 0.377) 0px 0px 0px, 
+              inset 0.5px 0.5px 4px #000000,
+              #c7c3c0 -2px -2px 4px 0px inset;
+  transform: scale(0.98);
+}
+
+/* Stop Button - Red Retro */
+.nativemimic-stop-button {
+  background-color: #d42a02;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: 0.1s ease-in-out;
+  min-width: 50px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.377) 4px 4px 6px, 
+              #fb702c 2px 2px 4px 0px inset,
+              #d42a02 -2px -2px 4px 0px inset;
+}
+
+.nativemimic-stop-button:hover {
+  transform: translateY(-1px);
+}
+
+.nativemimic-stop-button:active {
+  box-shadow: rgba(0, 0, 0, 0.377) 0px 0px 0px, 
+              inset 0.5px 0.5px 4px #000000,
+              #d42a02 -2px -2px 4px 0px inset;
+  transform: scale(0.98);
+}
+
+/* Record Button - Dark Gray Retro */
+.nativemimic-record-button {
+  background-color: #545251;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: 0.1s ease-in-out;
+  min-width: 65px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.377) 4px 4px 6px,
+              #a8a6a4 1.5px 1.5px 2px 0px inset, 
+              #545251 -2px -2px 4px 0px inset;
+}
+
+/* Removed hover effect for record button */
+
+.nativemimic-record-button:active {
+  box-shadow: rgba(0, 0, 0, 0.377) 0px 0px 0px, 
+              inset 0.5px 0.5px 4px #000000,
+              #545251 -2px -2px 4px 0px inset;
+  transform: scale(0.98);
+}
+
+/* Play Recording Button - Same as Record Button but Distinct */
+.nativemimic-play-recording-button {
+  background-color: #545251;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: 0.1s ease-in-out;
+  min-width: 95px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.377) 4px 4px 6px,
+              #a8a6a4 1.5px 1.5px 2px 0px inset, 
+              #545251 -2px -2px 4px 0px inset;
+}
+
+.nativemimic-play-recording-button:hover {
+  transform: translateY(-1px);
+}
+
+.nativemimic-play-recording-button:active {
+  box-shadow: rgba(0, 0, 0, 0.377) 0px 0px 0px, 
+              inset 0.5px 0.5px 4px #000000,
+              #545251 -2px -2px 4px 0px inset;
+  transform: scale(0.98);
+}
+
+/* Administrative Buttons - Light Gray Retro */
+.nativemimic-notes-button,
+.nativemimic-settings-button,
+.nativemimic-theme-button {
+  background-color: #c7c3c0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #5f5f5f;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: 0.1s ease-in-out;
+  min-width: 50px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.377) 4px 4px 6px,
+              #ffffff 1.5px 1.5px 2px 0px inset, 
+              #c7c3c0 -2px -2px 4px 0px inset;
+}
+
+/* Theme button specific styling */
+.nativemimic-theme-button {
+  min-width: 32px;
+  font-size: 14px;
+}
+
+.nativemimic-notes-button:hover,
+.nativemimic-settings-button:hover,
+.nativemimic-theme-button:hover {
+  transform: translateY(-1px);
+}
+
+.nativemimic-notes-button:active,
+.nativemimic-settings-button:active,
+.nativemimic-theme-button:active {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px, 
+              inset 0.5px 0.5px 2px #000000,
+              #c7c3c0 -1px -1px 2px 0px inset;
+  transform: scale(0.98);
+}
+
+/* Close Button - Clean X with Tooltip */
+.nativemimic-close-button {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: rgba(180, 83, 107, 0.11);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.nativemimic-close-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 1.5px;
+  background-color: #ffffff;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.nativemimic-close-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 1.5px;
+  background-color: #ffffff;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.nativemimic-close-button:hover {
+  background-color: rgb(211, 21, 21);
+}
+
+.nativemimic-close-button:active {
+  background-color: rgb(130, 0, 0);
+}
+
+
+/* Voice Control - Retro Inset Design */
+.nativemimic-voice-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #d8d8d8;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: none;
+  position: relative; /* Establish stacking context */
+  overflow: visible; /* Allow dropdown to extend beyond container */
+  box-shadow: inset 1px 1px 2px #b0b0b0, 
+              inset -1px -1px 2px #f0f0f0;
+}
+
+.nativemimic-voice-control label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #5f5f5f;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  white-space: nowrap;
+}
+
+/* Custom Voice Dropdown */
+.nativemimic-voice-dropdown {
+  position: relative;
+  min-width: 180px;
+  max-width: 220px;
+}
+
+.nativemimic-voice-selected {
+  background: #c7c3c0;
+  border: none;
+  border-radius: 6px;
+  color: #5f5f5f;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  cursor: pointer;
+  outline: none;
+  padding: 2px 8px 2px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 16px;
+  user-select: none;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 4px,
+              #ffffff 1px 1px 1px 0px inset, 
+              #c7c3c0 -1px -1px 2px 0px inset;
+  transition: 0.1s ease-in-out;
+}
+
+.nativemimic-voice-selected span:first-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  margin-right: 4px;
+}
+
+.nativemimic-voice-selected:hover {
+  transform: translateY(-1px);
+}
+
+.nativemimic-voice-selected:active {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px, 
+              inset 0.5px 0.5px 2px #000000,
+              #c7c3c0 -1px -1px 2px 0px inset;
+  transform: scale(0.98);
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  color: #5f5f5f;
+  margin-left: 4px;
+  transition: transform 0.2s;
+}
+
+.nativemimic-voice-dropdown.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.nativemimic-voice-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #e8e8e8;
+  border: 2px solid #d0d0d0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
+}
+
+/* Dropdown positioned above when near bottom edge */
+.nativemimic-voice-options.dropdown-above {
+  top: auto;
+  bottom: 100%;
+  border-top: 2px solid #d0d0d0;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  z-index: 10002;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px -4px 8px;
+}
+
+/* Settings Modal Styles */
+.nativemimic-settings-section {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e8e8ed;
+}
+
+.nativemimic-settings-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.nativemimic-settings-section h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.nativemimic-api-status {
+  margin-bottom: 16px;
+}
+
+.nativemimic-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nativemimic-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff3b30;
+  transition: background-color 0.2s ease;
+}
+
+.nativemimic-status-dot.enabled {
+  background: #30d158;
+}
+
+.nativemimic-status-dot.warning {
+  background: #ff9500;
+}
+
+.nativemimic-status-dot.error {
+  background: #ff3b30;
+}
+
+.nativemimic-input-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.nativemimic-input-group input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #d1d1d6;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.nativemimic-input-group input:focus {
+  outline: none;
+  border-color: #007aff;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.nativemimic-settings-btn {
+  background: #f2f2f7;
+  color: #1d1d1f;
+  border: 1px solid #d1d1d6;
+  border-radius: 6px;
+  padding: 6px 12px; /* Reduced from 8px 16px */
+  font-size: 12px; /* Reduced from 14px */
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nativemimic-settings-btn:hover {
+  background: #e8e8ed;
+  border-color: #c7c7cc;
+}
+
+.nativemimic-settings-btn.primary {
+  background: #007aff;
+  color: white;
+  border-color: #007aff;
+}
+
+.nativemimic-settings-btn.primary:hover {
+  background: #0056cc;
+  border-color: #0056cc;
+}
+
+.nativemimic-settings-btn.secondary {
+  background: #ff3b30;
+  color: white;
+  border-color: #ff3b30;
+}
+
+.nativemimic-settings-btn.secondary:hover {
+  background: #d70015;
+  border-color: #d70015;
+}
+
+.nativemimic-api-help {
+  margin-bottom: 12px;
+}
+
+.nativemimic-api-help small {
+  color: #6e6e73;
+  font-size: 12px;
+}
+
+.nativemimic-api-help a {
+  color: #007aff;
+  text-decoration: none;
+}
+
+.nativemimic-api-help a:hover {
+  text-decoration: underline;
+}
+
+.nativemimic-shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduced from 12px */
+}
+
+.nativemimic-shortcut-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0; /* Reduced from 8px */
+}
+
+.nativemimic-shortcut-keys {
+  display: flex;
+  gap: 4px;
+}
+
+.nativemimic-shortcut-keys kbd {
+  background: #f2f2f7;
+  color: #1d1d1f;
+  border: 1px solid #d1d1d6;
+  border-radius: 3px;
+  padding: 2px 6px; /* Reduced from 4px 8px */
+  font-size: 11px; /* Reduced from 12px */
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.nativemimic-shortcut-desc {
+  color: #6e6e73;
+  font-size: 13px; /* Reduced from 14px */
+}
+
+.nativemimic-theme-options {
+  display: flex;
+  gap: 8px; /* Reduced from 12px */
+  flex-wrap: nowrap; /* Force single line */
+  margin-bottom: 8px; /* Add some bottom margin */
+}
+
+.nativemimic-theme-options .nativemimic-settings-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Reduced from 6px */
+  flex: 1; /* Make buttons equal width to fill available space */
+}
+
+/* Dark Mode for Settings */
+
+
+
+
+
+
+
+
+/* Toggle Button Styles */
+.nativemimic-toggle-btn {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.nativemimic-toggle-btn.enabled {
+  background: #30d158 !important;
+  color: white !important;
+  border-color: #30d158 !important;
+}
+
+.nativemimic-toggle-btn.enabled:hover {
+  background: #28cd4c !important;
+  border-color: #28cd4c !important;
+}
+
+.nativemimic-toggle-btn.disabled {
+  background: #ff3b30 !important;
+  color: white !important;
+  border-color: #ff3b30 !important;
+}
+
+.nativemimic-toggle-btn.disabled:hover {
+  background: #d70015 !important;
+  border-color: #d70015 !important;
+}
+
+.nativemimic-voice-option {
+  padding: 4px 8px;
+  font-size: 11px;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid #d8d8d8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #5f5f5f;
+  background: #e8e8e8;
+  transition: 0.1s ease-in-out;
+}
+
+.nativemimic-voice-option:last-child {
+  border-bottom: none;
+}
+
+.nativemimic-voice-option:hover {
+  background: #d8d8d8;
+  transform: translateX(2px);
+}
+
+.nativemimic-voice-option.selected {
+  background: #545251;
+  color: #ffffff;
+  box-shadow: inset 1px 1px 2px #404040, 
+              inset -1px -1px 2px #686867;
+}
+
+.nativemimic-voice-group {
+  font-weight: 600;
+  background: #d0d0d0;
+  color: #5f5f5f;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 4px 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #c0c0c0;
+  box-shadow: inset 1px 1px 1px #e0e0e0, 
+              inset -1px -1px 1px #b0b0b0;
+}
+
+/* System voice styling - Light Gray Retro */
+.nativemimic-voice-option.system-voice {
+  background: #c7c3c0;
+  border-left: 3px solid #a8a6a4;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 2px,
+              #ffffff 0.5px 0.5px 1px 0px inset, 
+              #c7c3c0 -0.5px -0.5px 1px 0px inset;
+}
+
+.nativemimic-voice-option.system-voice:hover {
+  background: #b8b4b1;
+  transform: translateX(2px);
+}
+
+.nativemimic-voice-option.system-voice.selected {
+  background: #545251;
+  color: white;
+  border-left-color: #a8a6a4;
+  box-shadow: inset 1px 1px 2px #404040, 
+              inset -1px -1px 2px #686867;
+}
+
+/* Premium voice styling - Red Retro */
+.nativemimic-voice-option.premium-voice {
+  background: #d42a02;
+  color: #ffffff;
+  border-left: 3px solid #fb702c;
+  font-weight: 500;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 2px,
+              #fb702c 0.5px 0.5px 1px 0px inset, 
+              #d42a02 -0.5px -0.5px 1px 0px inset;
+}
+
+.nativemimic-voice-option.premium-voice:hover {
+  background: #e43010;
+  transform: translateX(2px);
+}
+
+.nativemimic-voice-option.premium-voice.selected {
+  background: #b22202;
+  color: white;
+  border-left-color: #fb702c;
+  box-shadow: inset 1px 1px 2px #8a1a01, 
+              inset -1px -1px 2px #d42a02;
+}
+
+/* Premium badge styling */
+.premium-badge {
+  font-size: 8px;
+  color: #d35400;
+  font-weight: 700;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.premium-voice.selected .premium-badge {
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Voice language and description styling */
+.voice-lang {
+  color: #6c757d;
+  font-size: 9px;
+  font-weight: normal;
+}
+
+.voice-desc {
+  color: #8e44ad;
+  font-size: 9px;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.premium-voice.selected .voice-lang,
+.premium-voice.selected .voice-desc {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Recommended voice styling (language-matched) */
+.nativemimic-voice-option.recommended {
+  background: #a8a6a4;
+  border-left: 3px solid #545251;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 2px,
+              #b8b6b4 0.5px 0.5px 1px 0px inset, 
+              #a8a6a4 -0.5px -0.5px 1px 0px inset;
+}
+
+.nativemimic-voice-option.recommended:hover {
+  background: #989694;
+  transform: translateX(2px);
+}
+
+.nativemimic-voice-option.recommended.selected {
+  background: #545251;
+  color: white;
+  border-left-color: #a8a6a4;
+  box-shadow: inset 1px 1px 2px #404040, 
+              inset -1px -1px 2px #686867;
+}
+
+/* Speed Control - Compact Minimal Design */
+.nativemimic-speed-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #d8d8d8;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: inset 1px 1px 2px #b0b0b0, 
+              inset -1px -1px 2px #f0f0f0;
+}
+
+.nativemimic-speed-control label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #5f5f5f;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#nativemimic-speed {
+  width: 60px;
+  height: 3px;
+  background: #dee2e6;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+#nativemimic-speed::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #495057;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+#nativemimic-speed::-webkit-slider-thumb:hover {
+  background: #212529;
+  transform: scale(1.1);
+}
+
+#nativemimic-speed::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #495057;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+#nativemimic-speed-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: #495057;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Visual feedback when speaking - Subtle */
+body.nativemimic-speaking {
+  /* Subtle visual indicator that TTS is active */
+}
+
+body.nativemimic-speaking .nativemimic-speech-controls {
+  border-color: #007bff;
+  box-shadow: 0 2px 12px rgba(0, 123, 255, 0.25);
+}
+
+/* Messages - Clean Flat Design */
+.nativemimic-message {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: nativemimic-slideIn 0.2s ease-out;
+  max-width: 280px;
+}
+
+.nativemimic-message-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.nativemimic-message-error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.nativemimic-message-info {
+  background: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* Permanent Message for Missing Voices - Clean Design */
+.nativemimic-permanent-message {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: nativemimic-slideIn 0.2s ease-out;
+  max-width: 300px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.nativemimic-permanent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid #ffeaa7;
+}
+
+.nativemimic-permanent-header strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nativemimic-permanent-close {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  color: #6c757d;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 6px;
+  transition: all 0.15s ease;
+}
+
+.nativemimic-permanent-close:hover {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.nativemimic-permanent-body {
+  padding: 8px 16px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Settings & Skin Selector Modal - Apple-like Theme */
+.nativemimic-settings-section {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Theme Toggle Switch */
+.nativemimic-theme-toggle {
+  margin-top: 12px;
+}
+
+.nativemimic-toggle-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.nativemimic-toggle-label span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1d1d1f;
+  letter-spacing: -0.2px;
+}
+
+.nativemimic-toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 26px;
+}
+
+.nativemimic-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.nativemimic-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(120, 120, 128, 0.16);
+  transition: 0.3s;
+  border-radius: 13px;
+}
+
+.nativemimic-toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background: white;
+  transition: 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nativemimic-toggle-switch input:checked + .nativemimic-toggle-slider {
+  background: #007aff;
+}
+
+.nativemimic-toggle-switch input:checked + .nativemimic-toggle-slider:before {
+  transform: translateX(18px);
+}
+
+.nativemimic-settings-section h4,
+.nativemimic-skin-presets h4,
+
+/* Disable button removed - now handled by extension popup */
+
+
+
+
+
+
+
+.nativemimic-color-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nativemimic-color-inputs label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.nativemimic-color-inputs input[type="color"] {
+  width: 35px;
+  height: 25px;
+  border: 1px solid #555;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #333;
+}
+
+.nativemimic-btn {
+  background: #fff;
+  color: #000;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.nativemimic-btn:hover {
+  background: #ddd;
+  border-color: #fff;
+}
+
+/* Disabled Indicator - Modern Minimal */
+.nativemimic-disabled-indicator {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  animation: nativemimic-fadeIn 0.3s ease-out;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nativemimic-disabled-indicator:hover {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+  transform: scale(1.02);
+}
+
+.nativemimic-indicator-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 10px;
+  color: #6c757d;
+}
+
+.nativemimic-indicator-icon {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.nativemimic-indicator-text {
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 1px;
+  white-space: nowrap;
+}
+
+.nativemimic-indicator-hint {
+  font-size: 8px;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+
+/* Report Button Special Styling */
+#nativemimic-report {
+  position: relative;
+}
+
+#nativemimic-report:hover::after {
+  content: 'Report pronunciation error';
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #212529;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+  z-index: 10001;
+}
+
+/* Close button */
+#nativemimic-close {
+  background: #f8f9fa !important;
+  color: #6c757d !important;
+  font-weight: 600;
+  min-width: 32px;
+}
+
+#nativemimic-close:hover {
+  background: #dc3545 !important;
+  color: white !important;
+}
+
+/* Animations - Subtle */
+@keyframes nativemimic-slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive design - Mobile optimization */
+@media (max-width: 768px) {
+  .nativemimic-speech-controls {
+    padding: 6px 10px;
+    min-width: 240px;
+  }
+  
+  .nativemimic-controls-container {
+    gap: 6px;
+  }
+  
+  .nativemimic-controls-container button {
+    padding: 5px 8px;
+    font-size: 12px;
+    min-width: 28px;
+    height: 28px;
+  }
+  
+  .nativemimic-speed-control {
+    padding: 3px 6px;
+  }
+  
+  #nativemimic-speed {
+    width: 50px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .nativemimic-speech-controls {
+    background: #000;
+    border: 2px solid #fff;
+  }
+  
+  .nativemimic-controls-container button {
+    background: #333;
+    border: 1px solid #fff;
+  }
+  
+  .nativemimic-controls-container button:hover {
+    background: #555;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .nativemimic-speech-controls,
+  .nativemimic-message {
+    animation: none;
+  }
+  
+  .nativemimic-controls-container button {
+    transition: none;
+  }
+  
+  .nativemimic-controls-container button:hover {
+    transform: none;
+  }
+}
+
+/* Compact Modal for Pronunciation Comparison */
+.nativemimic-compact-modal {
+  max-width: 320px !important;
+  max-height: 520px !important; /* Increased further to accommodate comparison interface */
+}
+
+.nativemimic-compact-modal .nativemimic-modal-header {
+  padding: 12px 16px 8px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-modal-header h3 {
+  font-size: 15px !important;
+  margin: 0 !important;
+}
+
+.nativemimic-compact-modal .nativemimic-modal-body {
+  padding: 12px 16px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-text-display {
+  margin-bottom: 16px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-text-display label {
+  font-size: 11px !important;
+  margin-bottom: 4px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-selected-text {
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-report-options label {
+  font-size: 11px !important;
+  margin-bottom: 8px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-option-buttons {
+  gap: 8px !important;
+  margin-bottom: 16px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-option-btn {
+  padding: 10px 8px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-option-text {
+  font-size: 10px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-modal-footer {
+  padding: 8px 16px 12px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-btn {
+  padding: 6px 12px !important;
+  font-size: 12px !important;
+}
+
+.nativemimic-compact-modal .nativemimic-comparison-controls {
+  gap: 8px !important; /* Even more compact in modal */
+}
+
+.nativemimic-compact-modal .nativemimic-comparison-section {
+  gap: 6px !important; /* Gap between side-by-side buttons */
+}
+
+.nativemimic-compact-modal .nativemimic-comparison-button {
+  padding: 6px 10px !important; /* Still compact but more readable */
+  font-size: 12px !important; /* Readable text size */
+}
+
+.nativemimic-compact-modal .nativemimic-comparison-label {
+  font-size: 10px !important; /* Smaller labels in compact modal */
+}
+
+/* Dark mode for comparison buttons */
+
+
+
+
+/* Widget Dark Mode Styles */
+.nativemimic-speech-controls.nativemimic-dark-mode {
+  background-color: #212121 !important;
+  border: 2px solid #333333 !important;
+  box-shadow: rgba(0, 0, 0, 0.8) 8px 8px 16px, 
+              inset #2a2a2a 1px 1px 2px 0px, 
+              inset #181818 -2px -2px 4px 0px !important;
+  color: #c7c3c0 !important;
+}
+
+/* Dark Mode Control Elements */
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-controls-container {
+  color: #c7c3c0 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-separator {
+  background: #404040 !important;
+  box-shadow: inset -1px 0px 0px #303030, 1px 0px 0px #505050 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-control {
+  background: #2a2a2a !important;
+  box-shadow: inset 1px 1px 2px #181818, 
+              inset -1px -1px 2px #3c3c3c !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-control label {
+  color: #c7c3c0 !important;
+}
+
+/* Dark Mode Voice Dropdown */
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-selected {
+  background: #545251 !important;
+  color: #ffffff !important;
+  box-shadow: rgba(0, 0, 0, 0.6) 2px 2px 4px,
+              #6a6968 1px 1px 1px 0px inset, 
+              #454544 -1px -1px 2px 0px inset !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-selected .dropdown-arrow {
+  color: #ffffff !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-options {
+  background: #212121 !important;
+  border-color: #333333 !important;
+  box-shadow: rgba(0, 0, 0, 0.8) 4px 4px 8px !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-options.dropdown-above {
+  box-shadow: rgba(0, 0, 0, 0.8) 4px -4px 8px !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option {
+  background: #212121 !important;
+  color: #c7c3c0 !important;
+  border-bottom-color: #333333 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option:hover {
+  background: #2a2a2a !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option.selected {
+  background: #545251 !important;
+  color: #ffffff !important;
+  box-shadow: inset 1px 1px 2px #404040, 
+              inset -1px -1px 2px #686867 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-group {
+  background: #333333 !important;
+  color: #c7c3c0 !important;
+  border-bottom-color: #404040 !important;
+  box-shadow: inset 1px 1px 1px #404040, 
+              inset -1px -1px 1px #2a2a2a !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option.system-voice {
+  background: #545251 !important;
+  color: #ffffff !important;
+  border-left-color: #6a6968 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option.system-voice:hover {
+  background: #5a5958 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option.premium-voice {
+  background: #d42a02 !important;
+  color: #ffffff !important;
+  border-left-color: #fb702c !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-speed-control {
+  background: #2a2a2a !important;
+  box-shadow: inset 1px 1px 2px #181818, 
+              inset -1px -1px 2px #3c3c3c !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-speed-control label {
+  color: #c7c3c0 !important;
+}
+/* Dark Mode Speed Control in Playback Row */
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-playback-row .nativemimic-speed-control {
+  background: #2a2a2a !important;
+  box-shadow: inset 1px 1px 2px #181818, 
+              inset -1px -1px 2px #3c3c3c !important;
+}
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-playback-row .nativemimic-speed-control label {
+  color: #c7c3c0 !important;
+}
+
+/* Dark Mode Button Overrides - Keep existing admin button styling */
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-notes-button,
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-settings-button {
+  background-color: #545251 !important;
+  color: #ffffff !important;
+  box-shadow: rgba(0, 0, 0, 0.6) 4px 4px 6px,
+              #6a6968 1.5px 1.5px 2px 0px inset, 
+              #454544 -2px -2px 4px 0px inset !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-notes-button:hover,
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-settings-button:hover {
+  transform: translateY(-1px) !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-notes-button:active,
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-settings-button:active {
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 0px, 
+              inset 0.5px 0.5px 4px #000000,
+              #454544 -2px -2px 4px 0px inset !important;
+  transform: scale(0.98) !important;
+}
+
+/* Retro theme doesn't need dark mode overrides for speed control and separator */
+
+/* Modal Dark Mode Styles */
+
+
+
+
+
+
+
+.nativemimic-dark-mode .nativemimic-settings-section h4,
+.nativemimic-dark-mode .nativemimic-skin-presets h4,
+
+
+.nativemimic-dark-mode .nativemimic-text-display label,
+.nativemimic-dark-mode .nativemimic-report-options label,
+.nativemimic-dark-mode .nativemimic-text-input label,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dashboard Modal Styles */
+.nativemimic-dashboard-modal {
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.nativemimic-dashboard-loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.nativemimic-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.nativemimic-stat-card {
+  background: rgba(0, 122, 255, 0.05);
+  border: 1px solid rgba(0, 122, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.nativemimic-stat-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.nativemimic-stat-number {
+  font-size: 24px;
+  font-weight: 600;
+  color: #007aff;
+  margin-bottom: 4px;
+}
+
+.nativemimic-stat-label {
+  font-size: 11px;
+  color: #888;
+}
+
+.nativemimic-dashboard-sections {
+  display: grid;
+  gap: 20px;
+}
+
+.nativemimic-dashboard-section h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.nativemimic-dashboard-item {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-left: 3px solid #007aff;
+}
+
+.nativemimic-item-text {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.nativemimic-item-note {
+  color: #666;
+  font-size: 12px;
+  margin-bottom: 4px;
+  font-style: italic;
+}
+
+.nativemimic-item-meta {
+  font-size: 11px;
+  color: #888;
+}
+
+.nativemimic-empty {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 20px;
+}
+
+.nativemimic-error {
+  color: #dc3545;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Bug Report Modal Styles */
+.nativemimic-text-input {
+  margin-bottom: 15px;
+}
+
+.nativemimic-text-input label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 13px;
+}
+
+.nativemimic-text-input input,
+.nativemimic-text-input textarea,
+.nativemimic-text-input select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  background: #fff;
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+.nativemimic-text-input input:focus,
+.nativemimic-text-input textarea:focus,
+.nativemimic-text-input select:focus {
+  outline: none;
+  border-color: #007aff;
+  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
+}
+
+.nativemimic-text-input textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Dark mode dashboard styles */
+
+
+
+
+
+
+
+
+
+
+.nativemimic-modal.nativemimic-dark-mode .nativemimic-text-input input,
+.nativemimic-modal.nativemimic-dark-mode .nativemimic-text-input textarea,
+
+.nativemimic-modal.nativemimic-dark-mode .nativemimic-text-input input:focus,
+.nativemimic-modal.nativemimic-dark-mode .nativemimic-text-input textarea:focus,
+
+/* Dashboard Tabs */
+.nativemimic-dashboard-tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+  gap: 2px;
+}
+
+.nativemimic-tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.nativemimic-tab-btn:hover {
+  background: rgba(0, 122, 255, 0.1);
+  color: #007aff;
+}
+
+.nativemimic-tab-btn.nativemimic-tab-active {
+  background: #007aff;
+  color: #fff;
+  border-bottom: 2px solid #007aff;
+}
+
+.nativemimic-tab-content {
+  min-height: 200px;
+}
+
+.nativemimic-tab-panel {
+  display: none;
+}
+
+.nativemimic-tab-panel.nativemimic-tab-active {
+  display: block;
+}
+
+/* Scrollable Lists */
+.nativemimic-scrollable-list {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+/* Compact Items */
+.nativemimic-compact-item {
+  background: #f8f9fa;
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-left: 2px solid #007aff;
+  font-size: 12px;
+}
+
+.nativemimic-compact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.nativemimic-compact-text {
+  font-weight: 500;
+  color: #333;
+  flex: 1;
+  margin-right: 8px;
+}
+
+.nativemimic-compact-date {
+  font-size: 11px;
+  color: #888;
+  white-space: nowrap;
+}
+
+.nativemimic-compact-meta {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.nativemimic-compact-note {
+  color: #555;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.nativemimic-compact-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.nativemimic-tag {
+  background: rgba(0, 122, 255, 0.1);
+  color: #007aff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* Export Options */
+.nativemimic-export-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nativemimic-export-btn {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.nativemimic-export-btn:hover {
+  border-color: #007aff;
+  background: rgba(0, 122, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+.nativemimic-export-icon {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.nativemimic-export-info strong {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.nativemimic-export-info small {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Dark mode for new components */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Recording Controls in Dashboard */
+.nativemimic-recording-item {
+  padding: 12px !important;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.nativemimic-recording-item:hover {
+  border-left-color: #007aff;
+  background: rgba(0, 122, 255, 0.05);
+}
+
+.nativemimic-recording-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  gap: 12px;
+}
+
+.nativemimic-recording-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nativemimic-recording-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nativemimic-play-btn {
+  background: #007aff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.nativemimic-play-btn:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+.nativemimic-play-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.nativemimic-play-btn .nativemimic-play-icon {
+  font-size: 10px;
+}
+
+.nativemimic-duration {
+  font-size: 11px;
+  color: #666;
+  font-weight: 500;
+}
+
+.nativemimic-quality-score {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.nativemimic-no-audio {
+  font-size: 11px;
+  color: #999;
+  font-style: italic;
+}
+
+.nativemimic-recording-feedback {
+  margin-top: 8px;
+  border-top: 1px solid #eee;
+  padding-top: 8px;
+}
+
+.nativemimic-feedback-toggle {
+  font-size: 11px;
+  color: #007aff;
+  cursor: pointer;
+  padding: 2px 0;
+  user-select: none;
+}
+
+.nativemimic-feedback-toggle:hover {
+  text-decoration: underline;
+}
+
+.nativemimic-feedback-content {
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.nativemimic-tip {
+  color: #666;
+  margin-bottom: 3px;
+}
+
+.nativemimic-ai-note {
+  color: #007aff;
+  font-weight: 600;
+  margin-top: 6px;
+  padding: 4px 8px;
+  background: rgba(0, 122, 255, 0.1);
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+/* Dark mode for recording controls */
+
+
+
+
+
+
+
+
+/* Upgrade Modal Styles */
+.nativemimic-upgrade-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.nativemimic-upgrade-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nativemimic-upgrade-content {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  max-width: 520px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: nativemimic-upgradeSlideIn 0.3s ease-out;
+}
+
+.nativemimic-upgrade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.nativemimic-upgrade-header h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.nativemimic-upgrade-close {
+  background: #f5f5f7;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.nativemimic-upgrade-close:hover {
+  background: #e5e5e7;
+  color: #333;
+}
+
+.nativemimic-upgrade-body {
+  padding: 20px 24px 24px;
+}
+
+.nativemimic-upgrade-message {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.nativemimic-upgrade-message p {
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.nativemimic-upgrade-features {
+  margin: 24px 0;
+}
+
+.nativemimic-feature {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.nativemimic-feature-icon {
+  font-size: 20px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.nativemimic-feature div {
+  flex: 1;
+}
+
+.nativemimic-feature strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #1d1d1f;
+  font-weight: 600;
+}
+
+.nativemimic-feature p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.nativemimic-upgrade-pricing {
+  margin: 24px 0;
+}
+
+.nativemimic-pricing-option {
+  border: 2px solid #e5e5e7;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  background: #ffffff;
+}
+
+.nativemimic-pricing-option h4 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.nativemimic-price {
+  font-size: 32px;
+  font-weight: 700;
+  color: #007aff;
+  margin-bottom: 16px;
+}
+
+.nativemimic-price span {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666;
+}
+
+.nativemimic-upgrade-btn {
+  background: linear-gradient(135deg, #007aff 0%, #0056cc 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.nativemimic-upgrade-btn:hover {
+  background: linear-gradient(135deg, #0056cc 0%, #003d99 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.nativemimic-upgrade-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.nativemimic-upgrade-footer p {
+  margin: 8px 0;
+}
+
+@keyframes nativemimic-upgradeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

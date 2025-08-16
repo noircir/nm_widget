@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickSpeak Settings</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="popup-container">
+        <!-- Header -->
+        <div class="popup-header">
+            <div class="logo">
+                <h1>QuickSpeak</h1>
+            </div>
+            <div class="version">v2.21</div>
+        </div>
+
+        <!-- Main Toggle -->
+        <div class="main-toggle">
+            <label class="toggle-switch">
+                <input type="checkbox" id="enableToggle">
+                <span class="toggle-slider"></span>
+            </label>
+            <div class="toggle-label">
+                <span id="toggleStatus">Disabled</span>
+                <small>Highlight text to speak it aloud</small>
+            </div>
+        </div>
+
+
+
+        <!-- Keyboard Shortcuts -->
+        <div class="shortcuts-section">
+            <h3>Keyboard Shortcuts</h3>
+            <div class="shortcuts-list">
+                <div class="shortcut-item">
+                    <div class="shortcut-keys">
+                        <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>
+                    </div>
+                    <div class="shortcut-desc">Enable/Disable</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="shortcut-keys">
+                        <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>
+                    </div>
+                    <div class="shortcut-desc">Speak selected text</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="shortcut-keys">
+                        <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>
+                    </div>
+                    <div class="shortcut-desc">Pause/Resume speech</div>
+                </div>
+                <div class="shortcut-item">
+                    <div class="shortcut-keys">
+                        <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>+</kbd> / <kbd>-</kbd>
+                    </div>
+                    <div class="shortcut-desc">Adjust speed while speaking</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <div class="popup-footer">
+            <div class="footer-links">
+                <a href="#" id="helpLink">Help</a>
+                <span class="separator">•</span>
+                <a href="#" id="feedbackLink">Feedback</a>
+                <span class="separator">•</span>
+                <a href="#" id="rateLink">Rate Us</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+.nativemimic-speech-controls.nativemimic-dark-mode {
+  background-color: #212121 !important;
+  border: 2px solid #333333 !important;
+  box-shadow: rgba(0, 0, 0, 0.8) 8px 8px 16px, 
+              inset #2a2a2a 1px 1px 2px 0px, 
+              inset #181818 -2px -2px 4px 0px !important;
+  color: #c7c3c0 !important;
+}
+
+/* Dark Mode Control Elements */
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-controls-container {
+  color: #c7c3c0 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-separator {
+  background: #404040 !important;
+  box-shadow: inset -1px 0px 0px #303030, 1px 0px 0px #505050 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-control {
+  background: #2a2a2a !important;
+  box-shadow: inset 1px 1px 2px #181818, 
+              inset -1px -1px 2px #3c3c3c !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-control label {
+  color: #c7c3c0 !important;
+}
+
+/* Dark Mode Voice Dropdown */
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-selected {
+  background: #545251 !important;
+  color: #ffffff !important;
+  box-shadow: rgba(0, 0, 0, 0.6) 2px 2px 4px,
+              #6a6968 1px 1px 1px 0px inset, 
+              #454544 -1px -1px 2px 0px inset !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-selected .dropdown-arrow {
+  color: #ffffff !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-options {
+  background: #212121 !important;
+  border-color: #333333 !important;
+  box-shadow: rgba(0, 0, 0, 0.8) 4px 4px 8px !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-options.dropdown-above {
+  box-shadow: rgba(0, 0, 0, 0.8) 4px -4px 8px !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option {
+  background: #212121 !important;
+  color: #c7c3c0 !important;
+  border-bottom-color: #333333 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option:hover {
+  background: #2a2a2a !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option.selected {
+  background: #545251 !important;
+  color: #ffffff !important;
+  box-shadow: inset 1px 1px 2px #404040, 
+              inset -1px -1px 2px #686867 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-group {
+  background: #333333 !important;
+  color: #c7c3c0 !important;
+  border-bottom-color: #404040 !important;
+  box-shadow: inset 1px 1px 1px #404040, 
+              inset -1px -1px 1px #2a2a2a !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option.system-voice {
+  background: #545251 !important;
+  color: #ffffff !important;
+  border-left-color: #6a6968 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option.system-voice:hover {
+  background: #5a5958 !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-voice-option.premium-voice {
+  background: #d42a02 !important;
+  color: #ffffff !important;
+  border-left-color: #fb702c !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-speed-control {
+  background: #2a2a2a !important;
+  box-shadow: inset 1px 1px 2px #181818, 
+              inset -1px -1px 2px #3c3c3c !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-speed-control label {
+  color: #c7c3c0 !important;
+}
+/* Dark Mode Speed Control in Playback Row */
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-playback-row .nativemimic-speed-control {
+  background: #2a2a2a !important;
+  box-shadow: inset 1px 1px 2px #181818, 
+              inset -1px -1px 2px #3c3c3c !important;
+}
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-playback-row .nativemimic-speed-control label {
+  color: #c7c3c0 !important;
+}
+
+/* Dark Mode Button Overrides - Keep existing admin button styling */
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-notes-button,
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-settings-button {
+  background-color: #545251 !important;
+  color: #ffffff !important;
+  box-shadow: rgba(0, 0, 0, 0.6) 4px 4px 6px,
+              #6a6968 1.5px 1.5px 2px 0px inset, 
+              #454544 -2px -2px 4px 0px inset !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-notes-button:hover,
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-settings-button:hover {
+  transform: translateY(-1px) !important;
+}
+
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-notes-button:active,
+.nativemimic-speech-controls.nativemimic-dark-mode .nativemimic-settings-button:active {
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 0px, 
+              inset 0.5px 0.5px 4px #000000,
+              #454544 -2px -2px 4px 0px inset !important;
+  transform: scale(0.98) !important;
+}
+
+/* Retro theme doesn't need dark mode overrides for speed control and separator */
+
+/* Modal Dark Mode Styles */
+.nativemimic-dark-mode .nativemimic-modal-content {
+  background: rgba(28, 28, 30, 0.95);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.nativemimic-dark-mode .nativemimic-modal-header {
+  background: rgba(20, 20, 22, 0.8);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.nativemimic-dark-mode .nativemimic-modal-header h3 {
+  color: #ffffff;
+}
+
+.nativemimic-dark-mode .nativemimic-modal-close {
+  background: rgba(120, 120, 128, 0.24);
+  color: #8e8e93;
+}
+
+.nativemimic-dark-mode .nativemimic-modal-close:hover {
+  background: rgba(120, 120, 128, 0.32);
+  color: #ffffff;
+}
+
+.nativemimic-dark-mode .nativemimic-modal-body {
+  background: rgba(28, 28, 30, 0.95);
+}
+
+.nativemimic-dark-mode .nativemimic-settings-section {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.nativemimic-dark-mode .nativemimic-settings-section h4,
+.nativemimic-dark-mode .nativemimic-skin-presets h4,
+.nativemimic-dark-mode .nativemimic-skin-custom h4 {
+  color: #ffffff;
+}
+
+.nativemimic-dark-mode .nativemimic-toggle-label span {
+  color: #ffffff;
+}
+
+.nativemimic-dark-mode .nativemimic-text-display label,
+.nativemimic-dark-mode .nativemimic-report-options label,
+.nativemimic-dark-mode .nativemimic-text-input label,
+.nativemimic-dark-mode .nativemimic-voice-input label {
+  color: #8e8e93;
+}
+
+.nativemimic-dark-mode .nativemimic-selected-text {
+  background: #1c1c1e;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.nativemimic-dark-mode .nativemimic-option-btn {
+  background: #1c1c1e;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+

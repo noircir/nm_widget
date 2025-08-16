@@ -1,0 +1,49 @@
+{
+  "name": "nativemimic-extension",
+  "version": "3.30.0",
+  "description": "NativeMimic - AI Pronunciation Coach for Language Learners",
+  "scripts": {
+    "test": "jest",
+    "test:unit": "jest tests/unit",
+    "test:e2e": "playwright test",
+    "test:brave": "playwright test --project=brave",
+    "test:chrome": "playwright test --project=chrome",
+    "test:firefox": "playwright test --project=firefox",
+    "test:edge": "playwright test --project=edge",
+    "test:all": "npm run test:unit && npm run test:e2e",
+    "test:widgets": "playwright test tests/e2e/widgets.spec.js",
+    "test:shortcuts": "playwright test tests/e2e/shortcuts.spec.js",
+    "test:speech": "playwright test tests/e2e/speech.spec.js",
+    
+    "test:smoke": "echo '🚭 SMOKE TESTS (every commit)' && node smoke-tests.js",
+    "test:sanity": "echo '🎯 SANITY TESTS (after fixes)' && node tests/sanity/sanity-tests.js",
+    "test:regression": "echo '🔄 REGRESSION TESTS (before release)' && node tests/regression/regression-suite.js",
+    
+    "test:daily": "echo '📅 DAILY TESTS' && npm run test:smoke && npm run test:unit",
+    "test:weekly": "echo '📅 WEEKLY TESTS' && npm run test:daily && npm run test:e2e",
+    "test:release": "echo '📅 RELEASE TESTS' && npm run test:weekly && npm run test:regression",
+    
+    "test:fix": "echo '🔧 AFTER BUG FIX' && npm run test:sanity && npm run test:smoke",
+    "test:feature": "echo '✨ AFTER NEW FEATURE' && npm run test:sanity -- --feature=all && npm run test:smoke",
+    
+    "validate:extension": "node scripts/validate-extension.js",
+    "lint": "eslint mvp/ tests/",
+    "lint:fix": "eslint mvp/ tests/ --fix"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "jest": "^29.7.0",
+    "eslint": "^8.56.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "keywords": [
+    "text-to-speech",
+    "language-learning",
+    "browser-extension",
+    "accessibility",
+    "tts",
+    "speech-synthesis"
+  ],
+  "author": "NativeMimic Team",
+  "license": "MIT"
+}
